@@ -1,16 +1,13 @@
-import React, { memo, type FC, type ReactNode } from 'react';
+import React, { memo, type FC } from 'react';
 
-import Text from '../Typography/Text';
+import { Text } from '../Typography';
 
 import { Pressable } from 'react-native';
 import { useTheme } from '../../../stitches.config';
+
 import { ArrowWrapper, TitleWrapper, Wrapper } from './styles';
 
-interface HeaderProps {
-  text?: string;
-  NavIcon: ReactNode;
-  onIconPress?: (...args: any) => Promise<any> | any;
-}
+import type { HeaderProps } from './Models';
 
 const NavBar: FC<HeaderProps> = ({ text, NavIcon, onIconPress }) => {
   const theme = useTheme();

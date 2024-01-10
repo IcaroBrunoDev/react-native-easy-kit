@@ -1,6 +1,6 @@
 import { styled } from '../../../stitches.config';
 
-export const FabWrapper = styled('TouchableOpacity', {
+export const Wrapper = styled('TouchableOpacity', {
   elevation: 1,
   width: 60,
   height: 60,

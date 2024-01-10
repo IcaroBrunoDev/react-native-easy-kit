@@ -1,24 +1,21 @@
-import React, { memo, type FC, type ReactNode } from 'react';
+import React, { memo, type FC } from 'react';
 
-import { FabWrapper } from './styles';
+import { Wrapper } from './styles';
 
 import { useTheme } from '../../../stitches.config';
 
-interface FabProps {
-  Icon: ReactNode;
-  onPress: (...args: any) => Promise<any> | any;
-}
+import type { FabProps } from './Models';
 
 const Fab: FC<FabProps> = ({ Icon, onPress }) => {
   const theme = useTheme();
 
   return (
-    <FabWrapper
+    <Wrapper
       onPress={onPress}
       style={{ backgroundColor: theme.colors.mainColor }}
     >
       {Icon}
-    </FabWrapper>
+    </Wrapper>
   );
 };
 

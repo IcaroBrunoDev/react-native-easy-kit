@@ -2,9 +2,7 @@ import * as React from 'react';
 
 import { StyleSheet, View } from 'react-native';
 
-import { Accordion, Button, Fab, NavBar, Text } from 'rn-ui-base-components';
-
-import Icon from '@expo/vector-icons/Ionicons';
+import { Accordion, Text } from 'rn-ui-base-components';
 
 export default function App() {
   return (

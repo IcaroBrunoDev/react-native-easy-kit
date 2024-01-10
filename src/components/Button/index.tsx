@@ -1,22 +1,12 @@
-import React, { useCallback, type FC } from 'react';
-import {
-  ActivityIndicator,
-  type StyleProp,
-  type TextStyle,
-} from 'react-native';
+import React, { type FC, useCallback } from 'react';
+import { ActivityIndicator } from 'react-native';
 
-import { styled, useTheme } from '../../../stitches.config';
+import { Text } from '../Typography';
+import { TouchableOpacity } from './styles';
 
-interface ButtonProps {
-  title: string;
-  color?: string;
-  ghost?: boolean;
-  style?: StyleProp<TextStyle>;
-  loading?: boolean;
-  rounded?: boolean;
-  outlined?: boolean;
-  onPress: (...args: any) => Promise<any> | any;
-}
+import { useTheme } from '../../../stitches.config';
+
+import type { ButtonProps } from './Models';
 
 const Button: FC<ButtonProps> = ({
   title,
@@ -29,6 +19,13 @@ const Button: FC<ButtonProps> = ({
   outlined,
 }) => {
   const { colors } = useTheme();
+
+  /**
+   * Function that prevents the event to be called
+   * when @prop {loading} is active.
+   *
+   * @function handlePress @returns {void}
+   */
 
   const handlePress = useCallback(() => {
     !loading && onPress();
@@ -65,19 +62,5 @@ const Button: FC<ButtonProps> = ({
     </TouchableOpacity>
   );
 };
-
-const TouchableOpacity = styled('TouchableOpacity', {
-  width: '100%',
-  padding: 15,
-  alignSelf: 'center',
-  alignItems: 'center',
-  justifyContent: 'center',
-});
-
-const Text = styled('Text', {
-  fontSize: 15,
-  fontWeight: '700',
-  color: '#fff',
-});
 
 export default Button;

@@ -8,7 +8,7 @@ import React, {
 } from 'react';
 import { Animated, LayoutAnimation, Platform, UIManager } from 'react-native';
 
-import Text from '../Typography/Text';
+import Text from '../Typography/Components/Text';
 
 import { useTheme } from '../../../stitches.config';
 
@@ -18,11 +18,8 @@ import {
   ExpandedWrapper,
   Wrapper,
 } from './styles';
-import { SvgUri } from 'react-native-svg';
 
-interface AccordionProps {
-  title: string;
-}
+import type { AccordionProps } from './Models';
 
 if (
   Platform.OS === 'android' &&
@@ -33,6 +30,7 @@ if (
 
 const Accordion: FC<PropsWithChildren<AccordionProps>> = ({
   title,
+  Icon,
   children,
 }) => {
   const { colors } = useTheme();
@@ -42,6 +40,18 @@ const Accordion: FC<PropsWithChildren<AccordionProps>> = ({
 
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
+  /**
+   * Function that will be called everytime that
+   * the Pressable area is pressed. This function is responsible for
+   * handle thw Animated effect, creating a parallel effect that will
+   * change @constant arrowAnimation and @constant expandedAnimation values.
+   *
+   * @function expandAccordion @returns {void}
+   *
+   * Expanded status shoud be the opposite of itself previous value
+   * @param expandedStatus @type {boolean}
+   *
+   */
   const expandAccordion = useCallback(
     (expandedStatus: boolean) => {
       const toValue = expandedStatus ? 1 : 0;
@@ -58,6 +68,12 @@ const Accordion: FC<PropsWithChildren<AccordionProps>> = ({
           useNativeDriver: false,
         }),
       ]).start();
+
+      /**
+       * Apply an Animated effect right after the Animation above starts
+       * that will create a smooth transition to the element that will appears
+       * when expandedStatus is true.
+       */
 
       LayoutAnimation.configureNext(LayoutAnimation.Presets.linear);
 
@@ -87,11 +103,7 @@ const Accordion: FC<PropsWithChildren<AccordionProps>> = ({
             ],
           }}
         >
-          <SvgUri
-            width="100%"
-            height="100%"
-            uri="https://dev.w3.org/SVG/tools/svgweb/samples/svg-files/ruby.svg"
-          />
+          {Icon}
         </AnimatedArrow>
       </AccordionRetracted>
 
