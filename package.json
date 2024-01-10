@@ -32,7 +32,8 @@
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "clean": "del-cli lib",
     "prepare": "bob build",
-    "release": "release-it"
+    "release": "release-it",
+    "windows": "react-native run-windows"
   },
   "keywords": [
     "react-native",
@@ -55,11 +56,13 @@
   "devDependencies": {
     "@commitlint/config-conventional": "^17.0.2",
     "@evilmartians/lefthook": "^1.5.0",
+    "@react-native/babel-preset": "^0.73.19",
     "@react-native/eslint-config": "^0.72.2",
     "@release-it/conventional-changelog": "^5.0.0",
     "@types/jest": "^28.1.2",
     "@types/react": "~17.0.21",
     "@types/react-native": "0.70.0",
+    "@types/react-native-vector-icons": "^6.4.18",
     "commitlint": "^17.0.2",
     "del-cli": "^5.0.0",
     "eslint": "^8.4.1",
@@ -70,8 +73,11 @@
     "react": "18.2.0",
     "react-native": "0.72.6",
     "react-native-builder-bob": "^0.20.0",
+    "react-native-svg-transformer": "^1.3.0",
+    "react-native-windows": "0.72.23",
     "release-it": "^15.0.0",
-    "typescript": "^5.0.2"
+    "typescript": "^5.0.2",
+    "metro-config": "^0.76.8"
   },
   "resolutions": {
     "@types/react": "17.0.21"
@@ -130,7 +136,8 @@
           "singleQuote": true,
           "tabWidth": 2,
           "trailingComma": "es5",
-          "useTabs": false
+          "useTabs": false,
+          "endOfLine": "auto"
         }
       ]
     }
@@ -144,7 +151,8 @@
     "singleQuote": true,
     "tabWidth": 2,
     "trailingComma": "es5",
-    "useTabs": false
+    "useTabs": false,
+    "endOfLine": "auto"
   },
   "react-native-builder-bob": {
     "source": "src",
@@ -159,5 +167,9 @@
         }
       ]
     ]
+  },
+  "dependencies": {
+    "react-native-svg": "^14.1.0",
+    "stitches-native": "^0.4.0"
   }
 }
