@@ -1,18 +1,9 @@
-import React, { type FC, type PropsWithChildren } from 'react';
-import type { StyleProp, TextStyle } from 'react-native';
+import React, { type FC } from 'react';
 
-import { styled, useTheme } from '../../../stitches.config';
+import { styled, useTheme } from '../../../../stitches.config';
+import type { AnchorProps } from '../Models';
 
-interface AnchorProps {
-  style?: StyleProp<TextStyle>;
-  onPress: (...args: any) => any;
-}
-
-const Anchor: FC<PropsWithChildren<AnchorProps>> = ({
-  style,
-  onPress,
-  children,
-}) => {
+const Anchor: FC<AnchorProps> = ({ style, onPress, children }) => {
   const theme = useTheme();
 
   return (
