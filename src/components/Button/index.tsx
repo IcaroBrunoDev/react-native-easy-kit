@@ -1,4 +1,4 @@
-import React, { type FC, useCallback } from 'react';
+import React, { type FC, useCallback, useMemo } from 'react';
 import { ActivityIndicator } from 'react-native';
 
 import { Text } from '../Typography';
@@ -31,29 +31,27 @@ const Button: FC<ButtonProps> = ({
     !loading && onPress();
   }, [onPress, loading]);
 
+  const conditionalStyle = useMemo(() => {
+    return {
+      borderWidth: outlined ? 1 : 0,
+      borderRadius: rounded ? 8 : 0,
+      backgroundColor:
+        outlined || ghost ? 'transparent' : color ?? colors.default,
+    };
+  }, [outlined, rounded, ghost, color, colors]);
+
   return (
-    <TouchableOpacity
-      onPress={handlePress}
-      style={[
-        {
-          borderWidth: outlined ? 1 : 0,
-          borderRadius: rounded ? 8 : 0,
-          backgroundColor:
-            outlined || ghost ? 'transparent' : color ?? colors.mainColor,
-        },
-        style,
-      ]}
-    >
+    <TouchableOpacity onPress={handlePress} style={[conditionalStyle, style]}>
       {loading ? (
         <ActivityIndicator
           size="small"
-          color={outlined || ghost ? color ?? colors.mainColor : colors.white}
+          color={outlined || ghost ? color ?? colors.default : colors.white}
           accessibilityLabel="Carregando..."
         />
       ) : (
         <Text
           style={{
-            color: outlined || ghost ? color ?? colors.mainColor : colors.white,
+            color: outlined || ghost ? color ?? colors.default : colors.white,
           }}
         >
           {title}

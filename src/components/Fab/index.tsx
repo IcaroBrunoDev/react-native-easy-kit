@@ -12,7 +12,7 @@ const Fab: FC<FabProps> = ({ Icon, onPress }) => {
   return (
     <Wrapper
       onPress={onPress}
-      style={{ backgroundColor: theme.colors.mainColor }}
+      style={{ backgroundColor: theme.colors.default }}
     >
       {Icon}
     </Wrapper>

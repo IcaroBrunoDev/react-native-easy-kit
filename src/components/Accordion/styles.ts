@@ -11,7 +11,9 @@ export const Wrapper = styled('Pressable', {
   overflow: 'hidden',
 });
 
-export const ExpandedWrapper = styled('View');
+export const ExpandedWrapper = styled('View', {
+  borderTopWidth: 0.4,
+});
 
 export const AccordionRetracted = styled('View', {
   display: 'flex',

@@ -84,13 +84,11 @@ const Accordion: FC<PropsWithChildren<AccordionProps>> = ({
 
   return (
     <Wrapper
-      style={{ backgroundColor: colors.mainColor }}
+      style={{ backgroundColor: colors.default }}
       onPress={() => expandAccordion(!isExpanded)}
     >
       <AccordionRetracted>
-        <Text style={{ fontSize: 14, fontWeight: '700', color: colors.white }}>
-          {title}
-        </Text>
+        <Text style={{ color: colors.white }}>{title}</Text>
         <AnimatedArrow
           style={{
             transform: [
@@ -117,7 +115,6 @@ const Accordion: FC<PropsWithChildren<AccordionProps>> = ({
             inputRange: [0, 1],
             outputRange: [0, 15],
           }),
-          borderTopWidth: 0.4,
           borderColor: colors.borderColor,
         }}
       >
