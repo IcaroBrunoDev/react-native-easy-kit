@@ -2,7 +2,7 @@ import React, { memo, type FC } from 'react';
 
 import { Wrapper } from './styles';
 
-import { useTheme } from '../../../stitches.config';
+import { useTheme } from '../../../base.config';
 
 import type { FabProps } from './Models';
 

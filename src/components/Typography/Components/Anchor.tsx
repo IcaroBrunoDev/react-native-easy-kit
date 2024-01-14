@@ -1,14 +1,14 @@
 import React, { type FC } from 'react';
 
-import { styled, useTheme } from '../../../../stitches.config';
+import { styled, useTheme } from '../../../../base.config';
 import type { AnchorProps } from '../Models';
 
 const Anchor: FC<AnchorProps> = ({ style, onPress, children }) => {
-  const theme = useTheme();
+  const { colors } = useTheme();
 
   return (
     <TouchableOpacity onPress={onPress}>
-      <Text style={[{ color: theme.colors.text }, style]}>{children}</Text>
+      <Text style={[{ color: colors.text }, style]}>{children}</Text>
     </TouchableOpacity>
   );
 };

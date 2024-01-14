@@ -1,12 +1,11 @@
-import React, { type FC, useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, type FC } from 'react';
 import { ActivityIndicator } from 'react-native';
 
 import { Text } from '../Typography';
 import { TouchableOpacity } from './styles';
 
-import { useTheme } from '../../../stitches.config';
-
 import type { ButtonProps } from './Models';
+import { useTheme } from '../../../base.config';
 
 const Button: FC<ButtonProps> = ({
   title,
@@ -35,23 +34,22 @@ const Button: FC<ButtonProps> = ({
     return {
       borderWidth: outlined ? 1 : 0,
       borderRadius: rounded ? 8 : 0,
-      backgroundColor:
-        outlined || ghost ? 'transparent' : color ?? colors.default,
+      backgroundColor: outlined || ghost ? 'transparent' : color ?? '$primary',
     };
-  }, [outlined, rounded, ghost, color, colors]);
+  }, [outlined, rounded, ghost, color]);
 
   return (
     <TouchableOpacity onPress={handlePress} style={[conditionalStyle, style]}>
       {loading ? (
         <ActivityIndicator
           size="small"
-          color={outlined || ghost ? color ?? colors.default : colors.white}
+          color={outlined || ghost ? color ?? colors.primary : colors.white}
           accessibilityLabel="Carregando..."
         />
       ) : (
         <Text
           style={{
-            color: outlined || ghost ? color ?? colors.default : colors.white,
+            color: outlined || ghost ? color ?? '$primary' : '$white',
           }}
         >
           {title}

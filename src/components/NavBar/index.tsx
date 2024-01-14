@@ -3,7 +3,7 @@ import React, { memo, type FC } from 'react';
 import { Text } from '../Typography';
 
 import { Pressable } from 'react-native';
-import { useTheme } from '../../../stitches.config';
+import { useTheme } from '../../../base.config';
 
 import { ArrowWrapper, TitleWrapper, Wrapper } from './styles';
 

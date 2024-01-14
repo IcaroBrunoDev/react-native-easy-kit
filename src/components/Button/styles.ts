@@ -1,4 +1,4 @@
-import { styled } from '../../../stitches.config';
+import { styled } from '../../../base.config';
 
 export const TouchableOpacity = styled('TouchableOpacity', {
   width: '100%',

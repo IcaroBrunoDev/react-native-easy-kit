@@ -10,7 +10,7 @@ import { Animated, LayoutAnimation, Platform, UIManager } from 'react-native';
 
 import Text from '../Typography/Components/Text';
 
-import { useTheme } from '../../../stitches.config';
+import { useTheme } from '../../../base.config';
 
 import {
   AccordionRetracted,

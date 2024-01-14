@@ -1,6 +1,6 @@
 import React, { type FC } from 'react';
 
-import { styled, useTheme } from '../../../../stitches.config';
+import { styled, useTheme } from '../../../../base.config';
 
 import type { BaseText } from '../Models';
 
