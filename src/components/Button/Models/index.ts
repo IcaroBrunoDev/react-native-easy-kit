@@ -47,6 +47,12 @@ export interface ButtonProps {
   outlined?: boolean;
 
   /**
+   * Change the loading spinner color
+   * @type {string}
+   */
+  loadingColor?: string;
+
+  /**
    * OnPress Button Action
    *
    * @function onPress

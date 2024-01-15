@@ -6,40 +6,22 @@ import React, {
   type PropsWithChildren,
 } from 'react';
 
-import type { Config, Theme } from '../models/Theme';
+import type { Config } from '../models/Theme';
 
 import type { ReactNativeElements, RNStyles } from '../models/ReactNative';
 
-import { transformCompStyle } from '../utils';
+import { generateStyle } from '../utils';
 
 const ReactNative = require('react-native');
 
 type ProviderProps = {
-  theme: Theme;
+  theme: Config;
 };
 
 const createBaseTheme = (config: Config) => {
-  let theme = config.theme;
+  const theme = config;
 
-  const ThemeContext = createContext(theme);
-
-  const styled = <T extends keyof ReactNativeElements>(
-    element: T,
-    attrs?: RNStyles
-  ) => {
-    if (typeof element !== 'string')
-      throw new Error('Element type is not supported');
-
-    const Component = forwardRef((props: any, ref) => {
-      const style = transformCompStyle(props.style, attrs, theme);
-
-      delete props.style;
-
-      return createElement(ReactNative[element], { ...props, style, ref });
-    });
-
-    return Component;
-  };
+  const ThemeContext = createContext<Config>(theme);
 
   function ThemeProvider({
     theme,
@@ -50,15 +32,27 @@ const createBaseTheme = (config: Config) => {
     );
   }
 
-  const useTheme = () => {
-    const theme = useContext(ThemeContext);
+  const useTheme = () => useContext(ThemeContext) as Config;
 
-    return theme as Theme;
+  const styled = <T extends keyof ReactNativeElements>(
+    element: T,
+    attrs?: RNStyles
+  ) => {
+    if (typeof element !== 'string')
+      throw new Error('Element type is not supported');
+
+    const Component = forwardRef((props: any, ref) => {
+      const theme = useTheme();
+
+      const style = generateStyle(props.style, attrs, theme.theme);
+
+      return createElement(ReactNative[element], { ...props, style, ref });
+    });
+
+    return Component;
   };
 
-  // const createTheme = (theme: Theme) => {};
-
-  return { styled, useTheme, ThemeProvider };
+  return { theme: theme.theme, styled, useTheme, ThemeProvider };
 };
 
 export default createBaseTheme;

@@ -1,7 +1,7 @@
 import type { RNStyles } from '../models/ReactNative';
 import type { Theme } from '../models/Theme';
 
-export const transformCompStyle = (
+export const generateStyle = (
   primaryStyles: any,
   secondaryStyles: any,
   theme: Partial<Theme>

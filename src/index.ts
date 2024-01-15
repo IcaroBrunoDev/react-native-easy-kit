@@ -1,5 +1,6 @@
 import Button from './components/Button';
 
-import createBaseTheme from './context';
+import { theme, styled, useTheme, ThemeProvider } from '../base.config';
 
-export { Button, createBaseTheme };
+export { Button };
+export { theme, styled, useTheme, ThemeProvider };

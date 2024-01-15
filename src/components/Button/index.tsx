@@ -4,8 +4,9 @@ import { ActivityIndicator } from 'react-native';
 import { Text } from '../Typography';
 import { TouchableOpacity } from './styles';
 
-import type { ButtonProps } from './Models';
 import { useTheme } from '../../../base.config';
+
+import type { ButtonProps } from './Models';
 
 const Button: FC<ButtonProps> = ({
   title,
@@ -17,7 +18,9 @@ const Button: FC<ButtonProps> = ({
   onPress,
   outlined,
 }) => {
-  const { colors } = useTheme();
+  const {
+    theme: { colors },
+  } = useTheme();
 
   /**
    * Function that prevents the event to be called
@@ -30,7 +33,7 @@ const Button: FC<ButtonProps> = ({
     !loading && onPress();
   }, [onPress, loading]);
 
-  const conditionalStyle = useMemo(() => {
+  const { borderRadius, borderWidth, backgroundColor } = useMemo(() => {
     return {
       borderWidth: outlined ? 1 : 0,
       borderRadius: rounded ? 8 : 0,
@@ -39,7 +42,10 @@ const Button: FC<ButtonProps> = ({
   }, [outlined, rounded, ghost, color]);
 
   return (
-    <TouchableOpacity onPress={handlePress} style={[conditionalStyle, style]}>
+    <TouchableOpacity
+      onPress={handlePress}
+      style={[{ borderRadius, borderWidth, backgroundColor }, style]}
+    >
       {loading ? (
         <ActivityIndicator
           size="small"

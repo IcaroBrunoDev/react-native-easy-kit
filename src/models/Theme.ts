@@ -12,7 +12,7 @@ type Theme = {
 };
 
 type Config = {
-  theme: Partial<Theme>;
+  theme: Theme;
 };
 
 export type { Theme, Config };
