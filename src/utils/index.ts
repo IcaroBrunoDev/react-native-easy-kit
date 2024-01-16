@@ -1,7 +1,7 @@
 import type { RNStyles } from '../models/ReactNative';
 import type { Theme } from '../models/Theme';
 
-export const generateStyle = (
+export const generateStyles = (
   primaryStyles: any,
   secondaryStyles: any,
   theme: Partial<Theme>
@@ -16,13 +16,10 @@ export const generateStyle = (
     mergedStyles = { ...secondaryStyles, ...primaryStyles };
   }
 
-  return stylesMap(theme, mergedStyles);
+  return mapStyles(theme, mergedStyles);
 };
 
-export const stylesMap = (
-  theme: Partial<Theme>,
-  styles: Omit<RNStyles, 'Falsy'>
-) => {
+const mapStyles = (theme: Partial<Theme>, styles: Omit<RNStyles, 'Falsy'>) => {
   let mappedStyles = {};
 
   for (const style in styles) {
@@ -51,7 +48,7 @@ type PlainTheme = {
   [T: string]: string;
 };
 
-export const plainTheme = (theme: Partial<Theme>): PlainTheme => {
+const plainTheme = (theme: Partial<Theme>): PlainTheme => {
   let plainedValues = {};
 
   for (const key in theme) {

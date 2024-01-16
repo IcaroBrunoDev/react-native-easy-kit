@@ -1,4 +1,4 @@
-import { theme as defaultTheme } from './src/constants/theme';
+import { theme as defaultTheme } from './src/theme';
 
 import createBaseTheme from './src/context';
 

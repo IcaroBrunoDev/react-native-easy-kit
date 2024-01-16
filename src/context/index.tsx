@@ -10,7 +10,7 @@ import type { Config } from '../models/Theme';
 
 import type { ReactNativeElements, RNStyles } from '../models/ReactNative';
 
-import { generateStyle } from '../utils';
+import { generateStyles } from '../utils';
 
 const ReactNative = require('react-native');
 
@@ -36,15 +36,15 @@ const createBaseTheme = (config: Config) => {
 
   const styled = <T extends keyof ReactNativeElements>(
     element: T,
-    attrs?: RNStyles
+    styles?: RNStyles
   ) => {
     if (typeof element !== 'string')
       throw new Error('Element type is not supported');
 
     const Component = forwardRef((props: any, ref) => {
-      const theme = useTheme();
+      const { theme } = useTheme();
 
-      const style = generateStyle(props.style, attrs, theme.theme);
+      const style = generateStyles(props.style, styles, theme);
 
       return createElement(ReactNative[element], { ...props, style, ref });
     });
