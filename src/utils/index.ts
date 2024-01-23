@@ -1,10 +1,10 @@
+import type { Theme } from '../theme/Models';
 import type { RNStyles } from '../models/ReactNative';
-import type { Theme } from '../models/Theme';
 
 export const generateStyles = (
   primaryStyles: any,
   secondaryStyles: any,
-  theme: Partial<Theme>
+  theme: Theme
 ) => {
   let mergedStyles = {};
 
@@ -19,7 +19,7 @@ export const generateStyles = (
   return mapStyles(theme, mergedStyles);
 };
 
-const mapStyles = (theme: Partial<Theme>, styles: Omit<RNStyles, 'Falsy'>) => {
+const mapStyles = (theme: Theme, styles: Omit<RNStyles, 'Falsy'>) => {
   let mappedStyles = {};
 
   for (const style in styles) {
@@ -48,7 +48,7 @@ type PlainTheme = {
   [T: string]: string;
 };
 
-const plainTheme = (theme: Partial<Theme>): PlainTheme => {
+const plainTheme = (theme: Theme): PlainTheme => {
   let plainedValues = {};
 
   for (const key in theme) {
@@ -56,4 +56,23 @@ const plainTheme = (theme: Partial<Theme>): PlainTheme => {
   }
 
   return plainedValues;
+};
+
+export const mergeThemes = (current: Theme, newTheme: Theme) => {
+  const newValues = { ...current };
+
+  for (const theme in newTheme) {
+    const key = theme as keyof Theme;
+
+    const inheritedValues = current[key];
+
+    if (inheritedValues && Reflect.ownKeys(inheritedValues).length) {
+      newValues[key] = {
+        ...(current[key] as Record<string, any>),
+        ...(newTheme[key] as Record<string, any>),
+      };
+    }
+  }
+
+  return newValues;
 };

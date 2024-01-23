@@ -1,27 +1,26 @@
 import React, {
-  createContext,
-  createElement,
   forwardRef,
   useContext,
+  createContext,
+  createElement,
   type PropsWithChildren,
 } from 'react';
 
-import type { Config } from '../models/Theme';
+import * as ReactNative from 'react-native';
 
+import { generateStyles, mergeThemes } from '../utils';
+
+import type { Config, Theme } from '../theme/Models';
 import type { ReactNativeElements, RNStyles } from '../models/ReactNative';
 
-import { generateStyles } from '../utils';
-
-const ReactNative = require('react-native');
-
 type ProviderProps = {
-  theme: Config;
+  theme: Theme;
 };
 
 const createBaseTheme = (config: Config) => {
-  const theme = config;
+  const { theme } = config;
 
-  const ThemeContext = createContext<Config>(theme);
+  const ThemeContext = createContext<Theme>(theme);
 
   function ThemeProvider({
     theme,
@@ -32,7 +31,11 @@ const createBaseTheme = (config: Config) => {
     );
   }
 
-  const useTheme = () => useContext(ThemeContext) as Config;
+  const useTheme = () => useContext(ThemeContext) as Required<Theme>;
+
+  const extendtheme = (newTheme: Theme) => {
+    return mergeThemes(theme, newTheme);
+  };
 
   const styled = <T extends keyof ReactNativeElements>(
     element: T,
@@ -42,17 +45,27 @@ const createBaseTheme = (config: Config) => {
       throw new Error('Element type is not supported');
 
     const Component = forwardRef((props: any, ref) => {
-      const { theme } = useTheme();
+      const theme = useTheme();
 
       const style = generateStyles(props.style, styles, theme);
 
-      return createElement(ReactNative[element], { ...props, style, ref });
+      return createElement(ReactNative[element] as any, {
+        ...props,
+        style,
+        ref,
+      });
     });
 
     return Component;
   };
 
-  return { theme: theme.theme, styled, useTheme, ThemeProvider };
+  return {
+    theme,
+    styled,
+    useTheme,
+    extendtheme,
+    ThemeProvider,
+  };
 };
 
 export default createBaseTheme;

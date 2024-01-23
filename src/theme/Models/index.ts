@@ -19,11 +19,11 @@ type FontSizes = {
 };
 
 type Theme = {
-  sizes: Sizes;
-  space: Spaces;
-  fonts: Fonts;
-  colors: Colors;
-  fontSizes: FontSizes;
+  sizes?: Sizes;
+  space?: Spaces;
+  fonts?: Fonts;
+  colors?: Colors;
+  fontSizes?: FontSizes;
 };
 
 type Config = {

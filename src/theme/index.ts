@@ -1,17 +1,14 @@
-import type { Theme } from '../models/Theme';
+import type { Theme } from './Models';
 
 import space from './spaces';
 import colors from './colors';
+
+import { sizes as fontSizes } from './fonts';
 
 export const theme: Theme = {
   colors,
   sizes: {},
   space,
   fonts: {},
-  fontSizes: {
-    1: 13,
-    2: 14,
-    3: 15,
-    4: 18,
-  },
+  fontSizes,
 };

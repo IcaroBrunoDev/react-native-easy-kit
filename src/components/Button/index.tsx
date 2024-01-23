@@ -18,9 +18,7 @@ const Button: FC<ButtonProps> = ({
   onPress,
   outlined,
 }) => {
-  const {
-    theme: { colors },
-  } = useTheme();
+  const { colors } = useTheme();
 
   /**
    * Function that prevents the event to be called
