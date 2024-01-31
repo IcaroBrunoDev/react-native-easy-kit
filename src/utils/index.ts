@@ -24,7 +24,9 @@ const mapStyles = (theme: Theme, styles: Omit<RNStyles, 'Falsy'>) => {
 
   for (const style in styles) {
     /**
-     * @todo RNStyles currently does not account for string tokens. Soon I'll explore potential solutions for enabling type-checking of tokens.
+     * @todo
+     * RNStyles currently does not account for string tokens.
+     * Soon I'll explore potential solutions for enabling type-checking of tokens.
      */
     const [key, value] = [style, styles[style as keyof RNStyles]];
 

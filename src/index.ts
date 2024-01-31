@@ -1,4 +1,8 @@
+import { Text } from './components/Typography';
+
+import Fab from './components/Fab';
 import Button from './components/Button';
+import Accordion from './components/Accordion';
 
 import {
   theme,
@@ -8,5 +12,5 @@ import {
   ThemeProvider,
 } from '../base.config';
 
-export { Button };
+export { Fab, Text, Button, Accordion };
 export { theme, styled, useTheme, extendtheme, ThemeProvider };

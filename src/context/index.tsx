@@ -22,20 +22,48 @@ const createBaseTheme = (config: Config) => {
 
   const ThemeContext = createContext<Theme>(theme);
 
-  function ThemeProvider({
+  /**
+   *
+   * @param theme Theme
+   * @returns React.Context
+   */
+
+  const ThemeProvider = ({
     theme,
     children,
-  }: PropsWithChildren<ProviderProps>) {
+  }: PropsWithChildren<ProviderProps>) => {
     return (
       <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>
     );
-  }
+  };
+
+  /**
+   * Use the current theme
+   *
+   * @returns Theme
+   */
 
   const useTheme = () => useContext(ThemeContext) as Required<Theme>;
 
+  /**
+   * Extend the default theme with your own assets.
+   * You can create new styles or just overwrite the existing theme.
+   *
+   * @param newTheme Theme
+   * @returns
+   */
   const extendtheme = (newTheme: Theme) => {
     return mergeThemes(theme, newTheme);
   };
+
+  /**
+   * @param element ReactNativeElements
+   * @param styles RNStyles
+   * @returns React.ForwardRefExoticComponent
+   *
+   * Create a styled component that inherit the theme
+   * properties, wether tokens or a styled object.
+   */
 
   const styled = <T extends keyof ReactNativeElements>(
     element: T,

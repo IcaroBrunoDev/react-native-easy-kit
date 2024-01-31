@@ -9,4 +9,8 @@ export const defaults = {
   secondary: '#588157',
 };
 
-export default { ...alerts, ...defaults };
+export const text = {
+  text: '#303030',
+};
+
+export default { ...alerts, ...defaults, ...text };
