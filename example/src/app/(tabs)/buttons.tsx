@@ -1,8 +1,13 @@
 import React from 'react';
 
-import { View } from './styles';
+import { Button, useTheme, styled } from 'rn-ui-base-components';
 
-import { Button, useTheme } from 'rn-ui-base-components';
+const View = styled('View', {
+  flex: 1,
+  margin: 10,
+  alignItems: 'center',
+  justifyContent: 'center',
+});
 
 const RenderButton = () => {
   const { colors } = useTheme();
@@ -10,9 +15,9 @@ const RenderButton = () => {
   return (
     <View>
       <Button
-        color={colors.danger}
+        color={colors.violet}
         title="Danger Button"
-        onPress={() => console.warn('Pressed Danger Button')}
+        onPress={() => console.log('Pressed Danger Button')}
       />
     </View>
   );

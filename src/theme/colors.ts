@@ -10,6 +10,7 @@ export const defaults = {
 };
 
 export const text = {
+  white: '#FFF',
   text: '#303030',
 };
 

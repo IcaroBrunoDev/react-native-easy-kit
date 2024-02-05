@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, type FC } from 'react';
+import React, { memo, useMemo, type FC } from 'react';
 import { ActivityIndicator } from 'react-native';
 
 import { Text } from '../Typography';
@@ -17,50 +17,60 @@ const Button: FC<ButtonProps> = ({
   rounded,
   onPress,
   outlined,
+  variant,
 }) => {
   const { colors } = useTheme();
 
   /**
    * Function that prevents the event to be called
-   * when @prop {loading} is active.
+   * when loading is active.
    *
-   * @function handlePress @returns {void}
+   * @function handlePress
    */
 
-  const handlePress = useCallback(() => {
-    !loading && onPress();
-  }, [onPress, loading]);
+  const handlePress = (): void => {
+    if (loading) return;
 
-  const { borderRadius, borderWidth, backgroundColor } = useMemo(() => {
-    return {
+    onPress();
+  };
+
+  const { textStyles, buttonStyles, indicatorStyles } = useMemo(() => {
+    const { primary, white } = colors;
+
+    const textStyles = {
+      color: outlined || ghost ? color : white,
+    };
+
+    const buttonStyles = {
       borderWidth: outlined ? 1 : 0,
       borderRadius: rounded ? 8 : 0,
-      backgroundColor: outlined || ghost ? 'transparent' : color ?? '$primary',
+      backgroundColor: outlined || ghost ? 'transparent' : color ?? primary,
     };
-  }, [outlined, rounded, ghost, color]);
+
+    const indicatorStyles = {
+      color: outlined || ghost ? color : white,
+    };
+
+    return { textStyles, buttonStyles, indicatorStyles };
+  }, [outlined, rounded, ghost, color, colors]);
 
   return (
     <TouchableOpacity
+      variant={variant}
       onPress={handlePress}
-      style={[{ borderRadius, borderWidth, backgroundColor }, style]}
+      style={[buttonStyles, style]}
     >
       {loading ? (
         <ActivityIndicator
           size="small"
-          color={outlined || ghost ? color ?? colors.primary : colors.white}
+          color={indicatorStyles.color}
           accessibilityLabel="Carregando..."
         />
       ) : (
-        <Text
-          style={{
-            color: outlined || ghost ? color ?? '$primary' : '$white',
-          }}
-        >
-          {title}
-        </Text>
+        <Text style={textStyles}>{title}</Text>
       )}
     </TouchableOpacity>
   );
 };
 
-export default Button;
+export default memo(Button);

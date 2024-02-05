@@ -1,5 +1,10 @@
-import type { Theme } from '../theme/Models';
-import type { RNStyles } from '../models/ReactNative';
+import type { Styles } from '../models';
+import type { BaseTheme } from '../theme';
+import type { CustomTheme, Theme } from '../theme/Models';
+
+type UnchainedTheme = {
+  [T: string | number]: string | number;
+};
 
 export const generateStyles = (
   primaryStyles: any,
@@ -19,19 +24,14 @@ export const generateStyles = (
   return mapStyles(theme, mergedStyles);
 };
 
-const mapStyles = (theme: Theme, styles: Omit<RNStyles, 'Falsy'>) => {
+const mapStyles = (theme: Theme, styles: Omit<Styles, 'Falsy'>) => {
   let mappedStyles = {};
 
   for (const style in styles) {
-    /**
-     * @todo
-     * RNStyles currently does not account for string tokens.
-     * Soon I'll explore potential solutions for enabling type-checking of tokens.
-     */
-    const [key, value] = [style, styles[style as keyof RNStyles]];
+    const [key, value] = [style, styles[style as keyof Styles]];
 
-    if (value && value[0] === '$') {
-      const plain = plainTheme(theme);
+    if (value && typeof value === 'string' && value[0] === '$') {
+      const plain = unchainTheme(theme);
 
       const removedTokenStyle = (value as string).substring(1);
 
@@ -46,35 +46,37 @@ const mapStyles = (theme: Theme, styles: Omit<RNStyles, 'Falsy'>) => {
   return mappedStyles;
 };
 
-type PlainTheme = {
-  [T: string]: string;
-};
-
-const plainTheme = (theme: Theme): PlainTheme => {
+const unchainTheme = (theme: Theme) => {
   let plainedValues = {};
 
   for (const key in theme) {
     plainedValues = { ...plainedValues, ...theme[key as keyof Theme] };
   }
 
-  return plainedValues;
+  return plainedValues as UnchainedTheme;
 };
 
-export const mergeThemes = (current: Theme, newTheme: Theme) => {
-  const newValues = { ...current };
+export const mergeThemes = <T extends CustomTheme>(
+  theme: Theme,
+  extension: T
+) => {
+  const mergedThemes = { ...theme, ...extension };
 
-  for (const theme in newTheme) {
-    const key = theme as keyof Theme;
+  for (const ext in extension) {
+    const key = ext as keyof T;
 
-    const inheritedValues = current[key];
+    const newValues = extension[key] as Record<
+      keyof T,
+      Record<string | number, string | number>
+    >;
+    const inheritedValues = theme[key as keyof Theme];
 
-    if (inheritedValues && Reflect.ownKeys(inheritedValues).length) {
-      newValues[key] = {
-        ...(current[key] as Record<string, any>),
-        ...(newTheme[key] as Record<string, any>),
+    if (inheritedValues && Reflect.ownKeys(inheritedValues).length)
+      mergedThemes[key] = {
+        ...inheritedValues,
+        ...newValues,
       };
-    }
   }
 
-  return newValues;
+  return mergedThemes;
 };

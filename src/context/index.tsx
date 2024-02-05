@@ -1,60 +1,54 @@
 import React, {
-  forwardRef,
-  useContext,
   createContext,
   createElement,
+  forwardRef,
+  useContext,
   type PropsWithChildren,
+  type ReactElement,
 } from 'react';
 
 import * as ReactNative from 'react-native';
 
 import { generateStyles, mergeThemes } from '../utils';
 
-import type { Config, Theme } from '../theme/Models';
-import type { ReactNativeElements, RNStyles } from '../models/ReactNative';
+import type { Elements, Styles } from '../models';
+import type { CustomTheme, ThemeConfig } from '../theme/Models';
 
-type ProviderProps = {
-  theme: Theme;
-};
+const createBaseTheme = (config: ThemeConfig) => {
+  const defaultTheme = config.theme;
 
-const createBaseTheme = (config: Config) => {
-  const { theme } = config;
-
-  const ThemeContext = createContext<Theme>(theme);
+  const ThemeContext = createContext(defaultTheme);
 
   /**
    *
    * @param theme Theme
-   * @returns React.Context
+   * @returns {ReactElement}
    */
 
   const ThemeProvider = ({
     theme,
     children,
-  }: PropsWithChildren<ProviderProps>) => {
+  }: PropsWithChildren<ThemeConfig>): ReactElement => {
     return (
       <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>
     );
   };
 
   /**
-   * Use the current theme
    *
-   * @returns Theme
-   */
-
-  const useTheme = () => useContext(ThemeContext) as Required<Theme>;
-
-  /**
-   * Extend the default theme with your own assets.
-   * You can create new styles or just overwrite the existing theme.
-   *
-   * @param newTheme Theme
    * @returns
    */
-  const extendtheme = (newTheme: Theme) => {
-    return mergeThemes(theme, newTheme);
-  };
+
+  const useTheme = () => useContext(ThemeContext);
+
+  /**
+   *
+   * @param extension
+   * @returns
+   */
+
+  const extendTheme = <T extends CustomTheme>(extension: T) =>
+    mergeThemes(defaultTheme, extension);
 
   /**
    * @param element ReactNativeElements
@@ -65,11 +59,8 @@ const createBaseTheme = (config: Config) => {
    * properties, wether tokens or a styled object.
    */
 
-  const styled = <T extends keyof ReactNativeElements>(
-    element: T,
-    styles?: RNStyles
-  ) => {
-    if (typeof element !== 'string')
+  const styled = <T extends keyof Elements>(element: T, styles?: Styles) => {
+    if (typeof element !== 'string' || !ReactNative[element])
       throw new Error('Element type is not supported');
 
     const Component = forwardRef((props: any, ref) => {
@@ -88,10 +79,10 @@ const createBaseTheme = (config: Config) => {
   };
 
   return {
-    theme,
+    theme: defaultTheme,
     styled,
     useTheme,
-    extendtheme,
+    extendTheme,
     ThemeProvider,
   };
 };

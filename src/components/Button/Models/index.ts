@@ -41,6 +41,12 @@ export interface ButtonProps {
   rounded?: boolean;
 
   /**
+   *
+   */
+
+  variant?: 'success' | 'danger' | 'warning';
+
+  /**
    * Control outline effect (Transparent background with borders)
    * @type {boolean}
    */

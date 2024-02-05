@@ -1,9 +1,3 @@
-/**
- * @description
- * Manual ReactNativeElements type (copied from stitches library)
- * Used to create type assertions in the @function styled
- */
-
 import type { PropsWithChildren } from 'react';
 
 import type {
@@ -31,7 +25,13 @@ import type {
   VirtualizedListProps,
 } from 'react-native';
 
-export type ReactNativeElements = {
+/**
+ * @description
+ * Manual ReactNativeElements type (copied from stitches library)
+ * Used to create type assertions in the @function styled
+ */
+
+type Elements = {
   Button: PropsWithChildren<ButtonProps>;
   FlatList: FlatListProps<any>;
   Image: PropsWithChildren<ImageProps>;
@@ -52,17 +52,25 @@ export type ReactNativeElements = {
   VirtualizedList: VirtualizedListProps<any>;
 };
 
-/**
- * @todo
- * When we call and pass the attrs properties, we can use properties
- * that belongs to another component in a component that shoudn't be able
- * to use it, e.g: When using TouchableOpacity, I was able to pass resizeMode
- * as style property, It only should appear as option when use Image component.
- *
- * @interface RNStyles
- *
- */
+type PropsToChange =
+  | 'margin'
+  | 'marginTop'
+  | 'marginBottom'
+  | 'marginLeft'
+  | 'marginRight'
+  | 'marginVertical'
+  | 'marginHorizontal'
+  | 'padding'
+  | 'paddingTop'
+  | 'paddingVertical'
+  | 'paddingHorizontal';
 
-export type RNStyles = StyleProp<
-  ViewStyle | FlexStyle | TextStyle | ImageStyle
+type SpaceTypes = {
+  [P in PropsToChange]?: string | number;
+};
+
+type Styles = StyleProp<
+  ViewStyle | FlexStyle | TextStyle | ImageStyle | SpaceTypes
 >;
+
+export type { Styles, Elements };

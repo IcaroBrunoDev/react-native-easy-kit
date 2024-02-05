@@ -8,9 +8,9 @@ import {
   theme,
   styled,
   useTheme,
-  extendtheme,
+  extendTheme,
   ThemeProvider,
 } from '../base.config';
 
 export { Fab, Text, Button, Accordion };
-export { theme, styled, useTheme, extendtheme, ThemeProvider };
+export { theme, styled, useTheme, extendTheme, ThemeProvider };
