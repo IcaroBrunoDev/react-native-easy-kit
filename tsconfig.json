@@ -2,7 +2,7 @@
   "compilerOptions": {
     "rootDir": ".",
     "paths": {
-      "rn-ui-base-components": ["./src/index"]
+      "react-native-easy-kit": ["./src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

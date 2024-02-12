@@ -1,4 +1,4 @@
-import { styled } from 'rn-ui-base-components';
+import { styled } from 'react-native-easy-kit';
 
 export const View = styled('View', {
   flex: 1,

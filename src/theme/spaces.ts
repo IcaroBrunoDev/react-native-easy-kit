@@ -1,4 +1,4 @@
-const scales = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const defaultScales = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 const space = ((scales) => {
   let values = {};
@@ -8,6 +8,6 @@ const space = ((scales) => {
   }
 
   return values;
-})(scales);
+})(defaultScales);
 
 export default space;

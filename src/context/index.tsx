@@ -5,6 +5,7 @@ import React, {
   useContext,
   type PropsWithChildren,
   type ReactElement,
+  memo,
 } from 'react';
 
 import * as ReactNative from 'react-native';
@@ -75,7 +76,7 @@ const createBaseTheme = (config: ThemeConfig) => {
       });
     });
 
-    return Component;
+    return memo(Component);
   };
 
   return {

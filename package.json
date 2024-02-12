@@ -1,7 +1,7 @@
 {
-  "name": "rn-ui-base-components",
+  "name": "react-native-easy-kit",
   "version": "0.1.0",
-  "description": "Base components for RN developers",
+  "description": "React Native Easy Kit",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/src/index.d.ts",
@@ -26,7 +26,7 @@
     "!**/.*"
   ],
   "scripts": {
-    "example": "yarn workspace rn-ui-base-components-example",
+    "example": "yarn workspace react-native-easy-kit-example",
     "test": "jest",
     "typecheck": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
@@ -42,14 +42,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/IcaroBrunoDev/rn-ui-base-components.git"
+    "url": "git+https://github.com/IcaroBrunoDev/react-native-easy-kit.git"
   },
   "author": "Icaro Bruno <icarobrunodev@gmail.com> (https://github.com/IcaroBrunoDev)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/IcaroBrunoDev/rn-ui-base-components/issues"
+    "url": "https://github.com/IcaroBrunoDev/react-native-easy-kit/issues"
   },
-  "homepage": "https://github.com/IcaroBrunoDev/rn-ui-base-components#readme",
+  "homepage": "https://github.com/IcaroBrunoDev/react-native-easy-kit#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },

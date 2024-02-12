@@ -37,21 +37,25 @@ const Button: FC<ButtonProps> = ({
   const { textStyles, buttonStyles, indicatorStyles } = useMemo(() => {
     const { primary, white } = colors;
 
-    const textStyles = {
+    const text = {
       color: outlined || ghost ? color : white,
     };
 
-    const buttonStyles = {
+    const button = {
       borderWidth: outlined ? 1 : 0,
       borderRadius: rounded ? 8 : 0,
       backgroundColor: outlined || ghost ? 'transparent' : color ?? primary,
     };
 
-    const indicatorStyles = {
+    const indicator = {
       color: outlined || ghost ? color : white,
     };
 
-    return { textStyles, buttonStyles, indicatorStyles };
+    return {
+      textStyles: text,
+      buttonStyles: button,
+      indicatorStyles: indicator,
+    };
   }, [outlined, rounded, ghost, color, colors]);
 
   return (

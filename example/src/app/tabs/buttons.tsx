@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button, useTheme, styled } from 'rn-ui-base-components';
+import { Button, useTheme, styled } from 'react-native-easy-kit';
 
 const View = styled('View', {
   flex: 1,
@@ -15,7 +15,7 @@ const RenderButton = () => {
   return (
     <View>
       <Button
-        color={colors.violet}
+        color={colors.primary}
         title="Danger Button"
         onPress={() => console.log('Pressed Danger Button')}
       />

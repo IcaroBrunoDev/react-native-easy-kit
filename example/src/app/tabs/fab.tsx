@@ -2,7 +2,7 @@ import React from 'react';
 
 import { View } from './styles';
 
-import { Fab } from 'rn-ui-base-components';
+import { Fab } from 'react-native-easy-kit';
 
 import { MaterialIcons } from '@expo/vector-icons';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Accordion, Button, styled } from 'rn-ui-base-components';
+import { Accordion, Button, styled } from 'react-native-easy-kit';
 
 const View = styled('View', {
   flex: 1,

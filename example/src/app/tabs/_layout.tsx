@@ -1,12 +1,12 @@
 import { Tabs } from 'expo-router';
 import * as React from 'react';
 
-import { ThemeProvider, extendTheme } from 'rn-ui-base-components';
+import { ThemeProvider, extendTheme } from 'react-native-easy-kit';
 
 const theme = extendTheme({
   colors: {
-    primary: 'purple',
     red: 'red',
+    primary: 'purple',
     violet: 'violet',
   },
   customFontSize: {
@@ -16,9 +16,6 @@ const theme = extendTheme({
     customVariant: {
       backgrounColor: 'red',
     },
-  },
-  myCustomColor: {
-    primary: 'red',
   },
 });
 

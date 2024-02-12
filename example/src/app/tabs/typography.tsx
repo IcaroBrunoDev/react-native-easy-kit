@@ -2,11 +2,9 @@ import React from 'react';
 
 import { View } from './styles';
 
-import { Text, useTheme } from 'rn-ui-base-components';
+import { Text } from 'react-native-easy-kit';
 
 const RenderTypography = () => {
-  const { customFontSize } = useTheme();
-
   return (
     <View>
       <Text>This is a base text example</Text>

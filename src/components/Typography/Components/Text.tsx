@@ -4,7 +4,9 @@ import type { BaseText } from '../Models';
 import { styled } from '../../../../base.config';
 
 const Text: FC<BaseText> = ({ children, style }) => {
-  return <Base style={[{ color: '$text' }, style]}>{children}</Base>;
+  const color = '$text';
+
+  return <Base style={[{ color }, style]}>{children}</Base>;
 };
 
 const Base = styled('Text', {

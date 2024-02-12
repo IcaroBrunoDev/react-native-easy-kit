@@ -57,26 +57,18 @@ const unchainTheme = (theme: Theme) => {
 };
 
 export const mergeThemes = <T extends CustomTheme>(
-  theme: Theme,
+  theme: BaseTheme,
   extension: T
 ) => {
-  const mergedThemes = { ...theme, ...extension };
+  let themes = { ...extension, ...theme };
 
-  for (const ext in extension) {
-    const key = ext as keyof T;
+  for (const current in theme) {
+    const key = current as keyof BaseTheme;
 
-    const newValues = extension[key] as Record<
-      keyof T,
-      Record<string | number, string | number>
-    >;
-    const inheritedValues = theme[key as keyof Theme];
-
-    if (inheritedValues && Reflect.ownKeys(inheritedValues).length)
-      mergedThemes[key] = {
-        ...inheritedValues,
-        ...newValues,
-      };
+    if (extension.hasOwnProperty(key)) {
+      themes = { ...themes, [key]: { ...theme[key], ...extension[key] } };
+    }
   }
 
-  return mergedThemes;
+  return themes;
 };
