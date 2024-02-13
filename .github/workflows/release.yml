@@ -22,7 +22,13 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: NPM Publish
-        uses: JS-DevTools/npm-publish@v3
-        with:
-          token: ${{ secrets.NPM_TOKEN }}
+      - name: Initialize NPM Config
+        run: npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
+        env:
+           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          
+      - name: Run Release
+        run: yarn release
+        env: 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
