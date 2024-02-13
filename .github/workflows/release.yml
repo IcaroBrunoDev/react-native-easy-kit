@@ -22,5 +22,8 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
+      - name: NPM Auth
+        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+
       - name: Release
         run: yarn release-it
