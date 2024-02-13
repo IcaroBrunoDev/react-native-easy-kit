@@ -16,8 +16,11 @@ jobs:
           node-version: '18.x'
           registry-url: 'https://registry.npmjs.org'
 
+      - name: Install Yarn
+      - run: npm i -g yarn
+
       - name: Install dependencies
-        run: npm install
+        run: yarn install
 
       - name: Release
-        run: npm release-it
+        run: yarn release-it
