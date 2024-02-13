@@ -26,9 +26,12 @@ jobs:
         run: npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
         env:
            NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          
-      - name: Run Release
-        run: yarn release
-        env: 
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - uses: step-security/wait-for-secrets@v1
+        with:
+          secrets: |
+            DUMMY_SECRET: 
+              name: 'Dummy secret'
+              description: 'Dummy secret to demo wait-for-secrets'
+      - run: |
+          echo ${{ steps.get-otp.outputs.DUMMY_SECRET }}
