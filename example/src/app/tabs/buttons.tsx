@@ -4,8 +4,6 @@ import { Button, useTheme, styled } from 'react-native-easy-kit';
 
 const View = styled('View', {
   flex: 1,
-  margin: 10,
-  alignItems: 'center',
   justifyContent: 'center',
 });
 

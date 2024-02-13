@@ -4,7 +4,7 @@ import type { Styles } from '../../models';
 type VariantType = 'success' | 'error' | 'warning';
 
 type Variants = {
-  [P in VariantType | string]: Record<keyof Styles, string | number>;
+  [P in VariantType | string]: Partial<Record<keyof Styles, string | number>>;
 };
 
 type CustomTheme = {

@@ -1,6 +1,6 @@
 import React, { type FC } from 'react';
 
-import { styled, useTheme } from '../../../../base.config';
+import { styled, useTheme } from '../../../config';
 import type { AnchorProps } from '../Models';
 
 const Anchor: FC<AnchorProps> = ({ style, onPress, children }) => {

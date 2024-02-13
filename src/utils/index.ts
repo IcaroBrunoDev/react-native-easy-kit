@@ -7,18 +7,22 @@ type UnchainedTheme = {
 };
 
 export const generateStyles = (
-  primaryStyles: any,
-  secondaryStyles: any,
+  inline: Styles | undefined,
+  styled: Styles | undefined,
   theme: Theme
-) => {
+): Styles => {
   let mergedStyles = {};
 
-  if (primaryStyles && Array.isArray(primaryStyles)) {
-    primaryStyles
+  if (styled) {
+    mergedStyles = { ...mergedStyles, ...styled };
+  }
+
+  if (inline && Array.isArray(inline)) {
+    inline
       .filter((style) => style && Reflect.ownKeys(style).length)
-      .forEach((styles) => (mergedStyles = { ...secondaryStyles, ...styles }));
-  } else {
-    mergedStyles = { ...secondaryStyles, ...primaryStyles };
+      .forEach((style) => (mergedStyles = { ...mergedStyles, ...style }));
+  } else if (inline && Reflect.ownKeys(inline).length) {
+    mergedStyles = { ...mergedStyles, ...inline };
   }
 
   return mapStyles(theme, mergedStyles);

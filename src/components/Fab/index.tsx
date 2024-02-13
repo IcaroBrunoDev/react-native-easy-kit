@@ -2,7 +2,7 @@ import React, { memo, type FC } from 'react';
 
 import { Wrapper } from './styles';
 
-import { useTheme } from '../../../base.config';
+import { useTheme } from '../../config';
 
 import type { FabProps } from './Models';
 

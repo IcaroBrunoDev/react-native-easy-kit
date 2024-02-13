@@ -1,15 +1,12 @@
 import type { PropsWithChildren } from 'react';
 
 import type {
-  StyleProp,
-  ViewStyle,
-  TextStyle,
-  ImageStyle,
-  FlexStyle,
   ButtonProps,
   FlatListProps,
+  FlexStyle,
   ImageBackgroundProps,
   ImageProps,
+  ImageStyle,
   InputAccessoryViewProps,
   KeyboardAvoidingViewProps,
   PressableProps,
@@ -17,12 +14,13 @@ import type {
   SectionListProps,
   TextInputProps,
   TextProps,
+  TextStyle,
   TouchableHighlightProps,
   TouchableNativeFeedbackProps,
   TouchableOpacityProps,
   TouchableWithoutFeedbackProps,
   ViewProps,
-  VirtualizedListProps,
+  ViewStyle,
 } from 'react-native';
 
 /**
@@ -49,7 +47,6 @@ type Elements = {
   TouchableOpacity: PropsWithChildren<TouchableOpacityProps>;
   TouchableWithoutFeedback: PropsWithChildren<TouchableWithoutFeedbackProps>;
   View: PropsWithChildren<ViewProps>;
-  VirtualizedList: VirtualizedListProps<any>;
 };
 
 type PropsToChange =
@@ -66,11 +63,12 @@ type PropsToChange =
   | 'paddingHorizontal';
 
 type SpaceTypes = {
-  [P in PropsToChange]?: string | number;
+  [P in PropsToChange]: string | number;
 };
 
-type Styles = StyleProp<
-  ViewStyle | FlexStyle | TextStyle | ImageStyle | SpaceTypes
+type Styles = Partial<
+  Omit<ViewStyle & FlexStyle & TextStyle & ImageStyle, PropsToChange> &
+    SpaceTypes
 >;
 
-export type { Styles, Elements };
+export type { Elements, Styles };

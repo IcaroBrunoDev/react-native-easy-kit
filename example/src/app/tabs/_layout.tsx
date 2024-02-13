@@ -1,7 +1,7 @@
 import { Tabs } from 'expo-router';
 import * as React from 'react';
 
-import { ThemeProvider, extendTheme } from 'react-native-easy-kit';
+import { KitThemeProvider, extendTheme } from 'react-native-easy-kit';
 
 const theme = extendTheme({
   colors: {
@@ -14,14 +14,14 @@ const theme = extendTheme({
   },
   variants: {
     customVariant: {
-      backgrounColor: 'red',
+      backgroundColor: 'red',
     },
   },
 });
 
 export default function TabRoutesLayout() {
   return (
-    <ThemeProvider theme={theme}>
+    <KitThemeProvider theme={theme}>
       <Tabs>
         <Tabs.Screen name="index" options={{ title: 'Home' }} />
         <Tabs.Screen name="accordion" options={{ title: 'Acordion' }} />
@@ -29,6 +29,6 @@ export default function TabRoutesLayout() {
         <Tabs.Screen name="fab" options={{ title: 'Fab' }} />
         <Tabs.Screen name="typography" options={{ title: 'Typography' }} />
       </Tabs>
-    </ThemeProvider>
+    </KitThemeProvider>
   );
 }

@@ -1,4 +1,4 @@
-import { styled } from '../../../base.config';
+import { styled } from '../../config';
 
 export const Wrapper = styled('TouchableOpacity', {
   elevation: 1,

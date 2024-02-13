@@ -9,7 +9,7 @@ import { Animated, LayoutAnimation, Platform, UIManager } from 'react-native';
 
 import Text from '../Typography/Components/Text';
 
-import { useTheme } from '../../../base.config';
+import { useTheme } from '../../config';
 
 import {
   AccordionRetracted,

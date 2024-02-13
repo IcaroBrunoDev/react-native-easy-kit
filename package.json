@@ -13,6 +13,7 @@
     "android",
     "ios",
     "cpp",
+    "base.config.ts",
     "*.podspec",
     "!ios/build",
     "!android/build",

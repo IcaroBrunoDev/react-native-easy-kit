@@ -4,7 +4,7 @@ import { ActivityIndicator } from 'react-native';
 import { Text } from '../Typography';
 import { TouchableOpacity } from './styles';
 
-import { useTheme } from '../../../base.config';
+import { useTheme } from '../../config';
 
 import type { ButtonProps } from './Models';
 

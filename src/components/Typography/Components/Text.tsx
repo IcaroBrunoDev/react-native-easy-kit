@@ -1,7 +1,7 @@
 import React, { type FC } from 'react';
 
 import type { BaseText } from '../Models';
-import { styled } from '../../../../base.config';
+import { styled } from '../../../config';
 
 const Text: FC<BaseText> = ({ children, style }) => {
   const color = '$text';

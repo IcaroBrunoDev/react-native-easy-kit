@@ -13,7 +13,7 @@ import * as ReactNative from 'react-native';
 import { generateStyles, mergeThemes } from '../utils';
 
 import type { Elements, Styles } from '../models';
-import type { CustomTheme, ThemeConfig } from '../theme/Models';
+import type { CustomTheme, Theme, ThemeConfig } from '../theme/Models';
 
 const createBaseTheme = (config: ThemeConfig) => {
   const defaultTheme = config.theme;
@@ -26,7 +26,7 @@ const createBaseTheme = (config: ThemeConfig) => {
    * @returns {ReactElement}
    */
 
-  const ThemeProvider = ({
+  const KitThemeProvider = ({
     theme,
     children,
   }: PropsWithChildren<ThemeConfig>): ReactElement => {
@@ -36,18 +36,20 @@ const createBaseTheme = (config: ThemeConfig) => {
   };
 
   /**
+   * @returns {Theme}
    *
-   * @returns
+   * Export a hook that provides access to the current theme.
    */
 
-  const useTheme = () => useContext(ThemeContext);
+  const useTheme = (): Theme => useContext(ThemeContext);
 
   /**
    *
-   * @param extension
-   * @returns
+   * @param extension {T extends CustomTheme}
+   * @returns theme {BaseTheme & T}
+   *
+   * Merge the existing theme with a new theme object.
    */
-
   const extendTheme = <T extends CustomTheme>(extension: T) =>
     mergeThemes(defaultTheme, extension);
 
@@ -56,11 +58,11 @@ const createBaseTheme = (config: ThemeConfig) => {
    * @param styles RNStyles
    * @returns React.ForwardRefExoticComponent
    *
-   * Create a styled component that inherit the theme
-   * properties, wether tokens or a styled object.
+   * Create a styled component that inherits theme properties,
+   * whether they are tokens or a styled object.
    */
 
-  const styled = <T extends keyof Elements>(element: T, styles?: Styles) => {
+  const styled = (element: keyof Elements, styles?: Styles) => {
     if (typeof element !== 'string' || !ReactNative[element])
       throw new Error('Element type is not supported');
 
@@ -84,7 +86,7 @@ const createBaseTheme = (config: ThemeConfig) => {
     styled,
     useTheme,
     extendTheme,
-    ThemeProvider,
+    KitThemeProvider,
   };
 };
 
