@@ -23,7 +23,7 @@ jobs:
         run: yarn install
 
       - name: NPM Auth
-        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.yarnrc
 
       - name: Release
         run: yarn release-it
