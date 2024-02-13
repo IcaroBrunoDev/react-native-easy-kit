@@ -42,7 +42,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/IcaroBrunoDev/react-native-easy-kit.git"
+    "url": "https://github.com/IcaroBrunoDev/react-native-easy-kit.git"
   },
   "author": "Icaro Bruno <icarobrunodev@gmail.com> (https://github.com/IcaroBrunoDev)",
   "license": "MIT",
