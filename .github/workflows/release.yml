@@ -22,8 +22,7 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: NPM Auth
-        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.yarnrc
-
-      - name: Release
-        run: yarn release-it
+      - name: NPM Publish
+      - uses: JS-DevTools/npm-publish@v3
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
