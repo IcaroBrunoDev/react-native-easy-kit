@@ -20,21 +20,39 @@ This library wasn’t made by a team (unless you consider one developer to be a 
 
 We have some ready-made components; you can check out the documentation for each one in the list below:
 
+[`<Fab />`](docs/Fab.md)
+
+[`<Button />`](docs/Button.md)
+
+[`<NavBar />`](docs/NavBar.md)
+
+[`<Accordion />`](docs/Accordion.md)
+
+[`<Typography />`](docs/Typography.md)
+
 ## Functionalities
 
 The library includes some powerful functions, you can read the documentation for each one in the list below:
+
+[`theme`](docs/Theme.md)
+
+[`useTheme()`](docs/UseTheme.md)
+
+[`extendTheme()`](docs/ExtendTheme.md)
+
+[`<KitThemeProvider />`](docs/KitThemeProvider.md)
 
 ## Installation
 
 The installation process is easy, if you’re using NPM, just run this command:
 
-```js
+```ts
 npm install react-native-easy-kit
 ```
 
 Or if you’re using yarn, use the following command instead:
 
-```js
+```ts
 yarn add react-native-easy-kit
 ```
 
@@ -44,8 +62,9 @@ If you don’t want to customize the default theme, you don’t need to configur
 
 If you want to modify the default theme, you first need to understand how the themification works (put link here). After that, you can import the ThemeContext and use the extendTheme function to extend/overwrite the default theme as in the example below:
 
-```
+```tsx
 ...
+
 import { KitThemeProvider, extendTheme } from 'react-native-easy-kit';
 
 ...
