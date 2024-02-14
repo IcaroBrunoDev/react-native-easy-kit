@@ -20,27 +20,27 @@ This library wasn’t made by a team (unless you consider one developer to be a 
 
 We have some ready-made components; you can check out the documentation for each one in the list below:
 
-[`<Fab />`](docs/Fab.md)
+[`<Fab />`](docs/components/Fab.md)
 
-[`<Button />`](docs/Button.md)
+[`<Button />`](docs/components/Button.md)
 
-[`<NavBar />`](docs/NavBar.md)
+[`<NavBar />`](docs/components/NavBar.md)
 
-[`<Accordion />`](docs/Accordion.md)
+[`<Accordion />`](docs/components/Accordion.md)
 
-[`<Typography />`](docs/Typography.md)
+[`<Typography />`](docs/components/Typography.md)
 
 ## Functionalities
 
 The library includes some powerful functions, you can read the documentation for each one in the list below:
 
-[`theme`](docs/Theme.md)
+[`theme`](docs/functions/Theme.md)
 
-[`useTheme()`](docs/UseTheme.md)
+[`useTheme()`](docs/functions/UseTheme.md)
 
-[`extendTheme()`](docs/ExtendTheme.md)
+[`extendTheme()`](docs/functions/ExtendTheme.md)
 
-[`<KitThemeProvider />`](docs/KitThemeProvider.md)
+[`<KitThemeProvider />`](docs/functions/KitThemeProvider.md)
 
 ## Installation
 
