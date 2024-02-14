@@ -1,4 +1,4 @@
-import React, { memo, type FC } from 'react';
+import React, { memo, type FC, useMemo } from 'react';
 
 import { Text } from '../Typography';
 
@@ -9,22 +9,32 @@ import { ArrowWrapper, TitleWrapper, Wrapper } from './styles';
 
 import type { HeaderProps } from './Models';
 
-const NavBar: FC<HeaderProps> = ({ text, NavIcon, onIconPress }) => {
-  const theme = useTheme();
+const Navbar: FC<HeaderProps> = ({ title, style, icon, onPress }) => {
+  const { colors } = useTheme();
+
+  const styles = useMemo(() => {
+    const wrapper = {
+      backgroundColor: colors.background,
+    };
+
+    return { wrapper };
+  }, [colors]);
 
   return (
-    <Wrapper style={{ backgroundColor: theme.colors.backgroundColor }}>
-      <ArrowWrapper>
-        <Pressable onPress={onIconPress}>{NavIcon}</Pressable>
-      </ArrowWrapper>
+    <Wrapper style={[styles.wrapper, style]}>
+      {icon && (
+        <ArrowWrapper>
+          <Pressable onPress={onPress}>{icon}</Pressable>
+        </ArrowWrapper>
+      )}
 
-      {text && (
+      {title && (
         <TitleWrapper>
-          <Text>{text}</Text>
+          <Text>{title}</Text>
         </TitleWrapper>
       )}
     </Wrapper>
   );
 };
 
-export default memo(NavBar);
+export default memo(Navbar);

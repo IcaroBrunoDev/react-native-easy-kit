@@ -60,18 +60,6 @@ const Accordion: FC<PropsWithChildren<AccordionProps>> = ({
     };
   }, [labelColor, rounded, colors, color]);
 
-  /**
-   * Function that will be called everytime that
-   * the Pressable area is pressed. This function is responsible for
-   * handle thw Animated effect, creating a parallel effect that will
-   * change @constant arrowAnimation and @constant expandedAnimation values.
-   *
-   * @function expandAccordion @returns {void}
-   *
-   * Expanded status shoud be the opposite of itself previous value
-   * @param expandedStatus @type {boolean}
-   *
-   */
   const expandAccordion = useCallback(
     (expandedStatus: boolean) => {
       const toValue = expandedStatus ? 1 : 0;
@@ -89,12 +77,6 @@ const Accordion: FC<PropsWithChildren<AccordionProps>> = ({
         }),
       ]).start();
 
-      /**
-       * Apply an Animated effect right after the Animation above starts
-       * that will create a smooth transition to the element that will appears
-       * when expandedStatus is true.
-       */
-
       LayoutAnimation.configureNext(LayoutAnimation.Presets.linear);
 
       setIsExpanded(expandedStatus);
@@ -109,7 +91,7 @@ const Accordion: FC<PropsWithChildren<AccordionProps>> = ({
     >
       <AccordionRetracted>
         <Text style={textStyles}>{title}</Text>
-        {title.length < 50 && (
+        {Icon && title.length < 50 && (
           <AnimatedArrow
             style={{
               transform: [

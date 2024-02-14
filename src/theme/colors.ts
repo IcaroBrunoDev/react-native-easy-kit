@@ -7,6 +7,7 @@ export const alerts = {
 export const defaults = {
   primary: '#00b4d8',
   secondary: '#588157',
+  background: 'fefefe',
 };
 
 export const text = {

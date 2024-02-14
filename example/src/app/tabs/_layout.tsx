@@ -14,9 +14,9 @@ export default function TabRoutesLayout() {
   return (
     <KitThemeProvider theme={theme}>
       <Tabs>
-        <Tabs.Screen name="index" options={{ title: 'Home' }} />
+        <Tabs.Screen name="index" options={{ title: 'Buttons' }} />
         <Tabs.Screen name="accordion" options={{ title: 'Acordion' }} />
-        <Tabs.Screen name="buttons" options={{ title: 'Buttons' }} />
+        <Tabs.Screen name="navbar" options={{ title: 'Navbar' }} />
         <Tabs.Screen name="fab" options={{ title: 'Fab' }} />
         <Tabs.Screen name="typography" options={{ title: 'Typography' }} />
       </Tabs>

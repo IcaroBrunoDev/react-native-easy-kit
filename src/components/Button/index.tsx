@@ -6,7 +6,7 @@ import { TouchableOpacity } from './styles';
 
 import { useTheme } from '../../config';
 
-import type { BaseComponentStyle } from '../../models';
+import { applyVariant } from '../../utils';
 import type { ButtonProps } from './Models';
 
 const Button: FC<ButtonProps> = ({
@@ -20,7 +20,7 @@ const Button: FC<ButtonProps> = ({
   outlined,
   variant,
 }) => {
-  const { colors } = useTheme();
+  const theme = useTheme();
 
   const handlePress = (): void => {
     if (loading) return;
@@ -28,36 +28,36 @@ const Button: FC<ButtonProps> = ({
     onPress();
   };
 
-  const styles = useMemo((): BaseComponentStyle => {
-    const { primary, white } = colors;
+  const { text, wrapper } = useMemo(() => {
+    const { primary, white } = theme.colors;
 
     const text = {
       color: outlined || ghost ? color : white,
     };
 
-    const general = {
+    const wrapper = {
       borderWidth: outlined ? 1 : 0,
-      borderRadius: rounded ? 8 : 0,
+      borderRadius: rounded ? 100 : 0,
       backgroundColor: outlined || ghost ? 'transparent' : color ?? primary,
     };
 
-    return { text, general };
-  }, [outlined, rounded, ghost, color, colors]);
+    return applyVariant({ text, wrapper }, variant, theme.variants);
+  }, [outlined, rounded, ghost, color, variant, theme]);
 
   return (
     <TouchableOpacity
       variant={variant}
       onPress={handlePress}
-      style={[styles.general, style]}
+      style={[wrapper, style]}
     >
       {loading ? (
         <ActivityIndicator
           size="small"
-          color={styles.text.color}
+          color={text.color}
           accessibilityLabel="Carregando..."
         />
       ) : (
-        <Text style={styles.text}>{title}</Text>
+        <Text style={text}>{title}</Text>
       )}
     </TouchableOpacity>
   );

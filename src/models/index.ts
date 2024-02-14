@@ -71,9 +71,9 @@ type Styles = Partial<
     SpaceTypes
 >;
 
-type BaseComponentStyle = {
+type ComponentStyles = {
   text: TextStyle;
-  general: Styles;
+  wrapper: Styles;
 };
 
-export type { Elements, Styles, BaseComponentStyle };
+export type { Elements, Styles, ComponentStyles };

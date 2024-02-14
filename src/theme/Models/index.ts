@@ -22,4 +22,4 @@ type ThemeConfig = {
   theme: Theme;
 };
 
-export type { CustomTheme, Theme, ThemeConfig };
+export type { CustomTheme, Variants, Theme, ThemeConfig };
