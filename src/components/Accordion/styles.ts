@@ -1,14 +1,11 @@
 import { styled } from '../../config';
 
 export const Wrapper = styled('Pressable', {
-  width: '100%',
-  marginVertical: 10,
-  marginHorizontal: 15,
-  paddingVertical: 8,
-  borderRadius: 5,
-  borderWidth: 1,
   height: 'auto',
   overflow: 'hidden',
+  marginVertical: 10,
+  paddingVertical: 8,
+  marginHorizontal: 5,
 });
 
 export const ExpandedWrapper = styled('View', {
@@ -17,8 +14,8 @@ export const ExpandedWrapper = styled('View', {
 
 export const AccordionRetracted = styled('View', {
   display: 'flex',
-  flexDirection: 'row',
   alignItems: 'center',
+  flexDirection: 'row',
   justifyContent: 'space-between',
   paddingVertical: 10,
   paddingHorizontal: 20,

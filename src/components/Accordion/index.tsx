@@ -4,6 +4,7 @@ import React, {
   useState,
   type FC,
   type PropsWithChildren,
+  useMemo,
 } from 'react';
 import { Animated, LayoutAnimation, Platform, UIManager } from 'react-native';
 
@@ -30,7 +31,11 @@ if (
 const Accordion: FC<PropsWithChildren<AccordionProps>> = ({
   title,
   Icon,
+  style,
+  color,
+  rounded,
   children,
+  labelColor,
 }) => {
   const { colors } = useTheme();
 
@@ -38,6 +43,22 @@ const Accordion: FC<PropsWithChildren<AccordionProps>> = ({
   const expandedAnimation = useRef(new Animated.Value(0)).current;
 
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
+
+  const { textStyles, wrapperStyles } = useMemo(() => {
+    const { primary, white } = colors;
+
+    const text = { color: labelColor ?? white };
+
+    const wrapper = {
+      borderRadius: rounded ? 8 : 0,
+      backgroundColor: color ?? primary,
+    };
+
+    return {
+      textStyles: text,
+      wrapperStyles: wrapper,
+    };
+  }, [labelColor, rounded, colors, color]);
 
   /**
    * Function that will be called everytime that
@@ -83,25 +104,27 @@ const Accordion: FC<PropsWithChildren<AccordionProps>> = ({
 
   return (
     <Wrapper
-      style={{ backgroundColor: colors.default }}
+      style={[wrapperStyles, style]}
       onPress={() => expandAccordion(!isExpanded)}
     >
       <AccordionRetracted>
-        <Text style={{ color: colors.white }}>{title}</Text>
-        <AnimatedArrow
-          style={{
-            transform: [
-              {
-                rotate: arrowAnimation.interpolate({
-                  inputRange: [0, 1],
-                  outputRange: ['0deg', '180deg'],
-                }),
-              },
-            ],
-          }}
-        >
-          {Icon}
-        </AnimatedArrow>
+        <Text style={textStyles}>{title}</Text>
+        {title.length < 50 && (
+          <AnimatedArrow
+            style={{
+              transform: [
+                {
+                  rotate: arrowAnimation.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: ['0deg', '180deg'],
+                  }),
+                },
+              ],
+            }}
+          >
+            {Icon}
+          </AnimatedArrow>
+        )}
       </AccordionRetracted>
 
       <AccordionExpanded
@@ -114,7 +137,7 @@ const Accordion: FC<PropsWithChildren<AccordionProps>> = ({
             inputRange: [0, 1],
             outputRange: [0, 15],
           }),
-          borderColor: colors.borderColor,
+          borderColor: colors.primary,
         }}
       >
         {isExpanded && children}

@@ -1,5 +1,9 @@
 import React from 'react';
-import { Accordion, Button, styled } from 'react-native-easy-kit';
+import { FlatList } from 'react-native';
+import { Accordion, Text, styled, useTheme } from 'react-native-easy-kit';
+import { fakeFAQ } from '../../utils/fakers';
+
+import { MaterialIcons } from '@expo/vector-icons';
 
 const View = styled('View', {
   flex: 1,
@@ -9,11 +13,22 @@ const View = styled('View', {
 });
 
 const RenderAccordion = () => {
+  const { colors } = useTheme();
+
   return (
     <View>
-      <Accordion title="Accordion" Icon={''}>
-        <Button title="Button inside Accordion" onPress={() => {}} />
-      </Accordion>
+      <FlatList
+        data={fakeFAQ}
+        keyExtractor={(item, index) => `${item.title}-${index}`}
+        renderItem={({ item }) => (
+          <Accordion
+            Icon={<MaterialIcons color={colors.white} name="add" size={20} />}
+            title={item.title}
+          >
+            <Text>{item.text}</Text>
+          </Accordion>
+        )}
+      />
     </View>
   );
 };

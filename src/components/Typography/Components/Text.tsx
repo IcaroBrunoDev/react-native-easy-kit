@@ -10,7 +10,7 @@ const Text: FC<BaseText> = ({ children, style }) => {
 };
 
 const Base = styled('Text', {
-  fontSize: 13,
+  fontSize: 13.2,
   fontWeight: 'normal',
 });
 

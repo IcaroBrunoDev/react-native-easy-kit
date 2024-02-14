@@ -1,3 +1,5 @@
+import type { StyleProp, ViewStyle } from 'react-native';
+
 /**
  * @interface AccordionProps
  */
@@ -13,4 +15,12 @@ export interface AccordionProps {
    * @type {SVGElement}
    */
   Icon: SVGElement;
+
+  rounded?: boolean;
+
+  color?: string;
+
+  labelColor?: string;
+
+  style?: StyleProp<ViewStyle>;
 }

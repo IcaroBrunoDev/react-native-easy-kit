@@ -6,16 +6,7 @@ import { KitThemeProvider, extendTheme } from 'react-native-easy-kit';
 const theme = extendTheme({
   colors: {
     red: 'red',
-    primary: 'purple',
     violet: 'violet',
-  },
-  customFontSize: {
-    large: 18,
-  },
-  variants: {
-    customVariant: {
-      backgroundColor: 'red',
-    },
   },
 });
 

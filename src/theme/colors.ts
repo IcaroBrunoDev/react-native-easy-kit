@@ -11,7 +11,7 @@ export const defaults = {
 
 export const text = {
   white: '#FFF',
-  text: '#303030',
+  text: '#FFF',
 };
 
 export default { ...alerts, ...defaults, ...text };
