@@ -9,7 +9,6 @@ export const Wrapper = styled('View', {
   justifyContent: 'space-between',
   paddingVertical: 20,
   paddingHorizontal: 10,
-  elevation: 2,
 });
 
 export const ArrowWrapper = styled('View', {

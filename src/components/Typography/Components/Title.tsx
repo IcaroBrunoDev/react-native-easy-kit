@@ -12,7 +12,6 @@ const Title: FC<BaseText> = ({ children, style }) => {
 const Base = styled('Text', {
   fontSize: 15,
   fontWeight: '800',
-  fontFamily: '$OpenSans',
 });
 
 export default Title;

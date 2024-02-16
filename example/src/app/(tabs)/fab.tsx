@@ -12,27 +12,28 @@ const RenderFab = () => {
   return (
     <View>
       <Fab
-        icon={<MaterialIcons name="add" size={25} color={colors.text} />}
+        variant="danger"
+        icon={<MaterialIcons name="add" size={25} color={colors.white} />}
         onPress={() => console.log('Fab Pressed')}
       />
       <Fab
         position="bottom-inverted"
-        color="red"
+        color="$secondary"
         icon={
-          <MaterialIcons name="home-filled" size={25} color={colors.text} />
+          <MaterialIcons name="home-filled" size={25} color={colors.white} />
         }
         onPress={() => console.log('Fab Pressed')}
       />
       <Fab
         position="top-inverted"
-        color="green"
-        icon={<MaterialIcons name="waves" size={25} color={colors.text} />}
+        color="$tertiary"
+        icon={<MaterialIcons name="waves" size={25} color={colors.white} />}
         onPress={() => console.log('Fab Pressed')}
       />
       <Fab
-        color="black"
+        color="$rose"
         position="top"
-        icon={<MaterialIcons name="phone" size={25} color={colors.text} />}
+        icon={<MaterialIcons name="phone" size={25} color={colors.white} />}
         onPress={() => console.log('Fab Pressed')}
       />
     </View>

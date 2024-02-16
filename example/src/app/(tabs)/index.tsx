@@ -3,8 +3,15 @@ import { ScrollView } from 'react-native';
 
 import { Button, useTheme } from 'react-native-easy-kit';
 
-const basicButtons = ['Primary', 'Secondary'];
-const buttonVariants = ['Success'];
+const basics = ['primary', 'secondary'];
+const variants = [
+  'success',
+  'danger',
+  'warning',
+  'ghost',
+  'dark',
+  'customVariant',
+];
 
 export default function App() {
   const { colors } = useTheme();
@@ -22,25 +29,26 @@ export default function App() {
     <ScrollView
       contentContainerStyle={{ marginHorizontal: 10, marginBottom: 50 }}
     >
-      {basicButtons.map((button, index) => (
+      {basics.map((button, index) => (
         <Button
           key={`${button}-${index}`}
-          title={`${button} Button`}
-          color={'$' + button.toLowerCase()}
+          title={`Button ${button}`}
+          color={'$' + button}
           onPress={() => console.log(`Pressed ${button} Button`)}
         />
       ))}
 
-      {buttonVariants.map((button, index) => (
+      {variants.map((button, index) => (
         <Button
           key={`${button}-${index}`}
           title={`Variant ${button} Button`}
-          variant={button.toLowerCase() as 'success'}
+          variant={button as any}
+          loading
           onPress={() => console.log(`Pressed ${button} Button`)}
         />
       ))}
 
-      <Button
+      {/* <Button
         title={`Custom Color Button (Without Theme)`}
         color="#FA9500"
         onPress={() => console.log(`Pressed #FA9500 Button`)}
@@ -76,7 +84,7 @@ export default function App() {
           backgroundColor: '#7A89C2',
         }}
         onPress={() => console.log(`Pressed Custom Button`)}
-      />
+      /> */}
     </ScrollView>
   );
 }

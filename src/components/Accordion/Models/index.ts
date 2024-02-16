@@ -1,3 +1,4 @@
+import type { ReactElement } from 'react';
 import type { StyleProp, ViewStyle } from 'react-native';
 
 /**
@@ -8,11 +9,15 @@ export interface AccordionProps {
 
   color?: string;
 
-  Icon?: SVGElement;
+  icon?: ReactElement;
 
   rounded?: boolean;
 
   labelColor?: string;
 
+  variant?: 'success' | 'danger' | 'warning' | string;
+
   style?: StyleProp<ViewStyle>;
+
+  children: ReactElement | ReactElement[];
 }

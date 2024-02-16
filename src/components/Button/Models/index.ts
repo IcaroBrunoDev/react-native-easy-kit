@@ -44,7 +44,7 @@ export interface ButtonProps {
    *
    */
 
-  variant?: 'success' | 'danger' | 'warning';
+  variant?: 'success' | 'danger' | 'warning' | string;
 
   /**
    * Control outline effect (Transparent background with borders)

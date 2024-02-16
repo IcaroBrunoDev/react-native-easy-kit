@@ -1,5 +1,4 @@
-import { TextStyleKeys } from '../constants';
-import type { ComponentStyles, Styles } from '../models';
+import type { Styles } from '../models';
 import type { BaseTheme } from '../theme';
 import type { CustomTheme, Theme, Variants } from '../theme/Models';
 
@@ -73,7 +72,7 @@ export const mergeThemes = <T extends CustomTheme>(
 };
 
 export const applyVariant = (
-  styles: ComponentStyles,
+  styles: Styles,
   variant: string | undefined,
   variants: Variants
 ) => {
@@ -82,11 +81,7 @@ export const applyVariant = (
 
     if (values && Reflect.ownKeys(values).length) {
       for (const val in values) {
-        if (TextStyleKeys.includes(val)) {
-          styles.text = { ...styles.text, [val]: values[val] };
-        } else {
-          styles.wrapper = { ...styles.wrapper, [val]: values[val] };
-        }
+        styles = { ...styles, [val]: values[val] };
       }
     }
   }

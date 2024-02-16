@@ -20,7 +20,7 @@ const Button: FC<ButtonProps> = ({
   outlined,
   variant,
 }) => {
-  const theme = useTheme();
+  const { colors, variants } = useTheme();
 
   const handlePress = (): void => {
     if (loading) return;
@@ -28,36 +28,33 @@ const Button: FC<ButtonProps> = ({
     onPress();
   };
 
-  const { text, wrapper } = useMemo(() => {
-    const { primary, white } = theme.colors;
+  const styles = useMemo(() => {
+    const { primary, white } = colors;
 
-    const text = {
+    const styles = {
       color: outlined || ghost ? color : white,
-    };
-
-    const wrapper = {
       borderWidth: outlined ? 1 : 0,
       borderRadius: rounded ? 100 : 0,
       backgroundColor: outlined || ghost ? 'transparent' : color ?? primary,
     };
 
-    return applyVariant({ text, wrapper }, variant, theme.variants);
-  }, [outlined, rounded, ghost, color, variant, theme]);
+    return applyVariant(styles, variant, variants);
+  }, [outlined, rounded, ghost, color, variant, colors, variants]);
 
   return (
     <TouchableOpacity
       variant={variant}
       onPress={handlePress}
-      style={[wrapper, style]}
+      style={[styles, style]}
     >
       {loading ? (
         <ActivityIndicator
           size="small"
-          color={text.color}
+          color={styles.color}
           accessibilityLabel="Carregando..."
         />
       ) : (
-        <Text style={text}>{title}</Text>
+        <Text style={{ color: styles.color }}>{title}</Text>
       )}
     </TouchableOpacity>
   );

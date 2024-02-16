@@ -1,12 +1,12 @@
 import React, { type FC } from 'react';
 
 import type { BaseText } from '../Models';
-import { styled } from '../../../config';
+import { styled, useTheme } from '../../../config';
 
-const Text: FC<BaseText> = ({ children, style }) => {
-  const color = '$text';
+const Text: FC<BaseText> = ({ style, children }) => {
+  const { colors } = useTheme();
 
-  return <Base style={[{ color }, style]}>{children}</Base>;
+  return <Base style={[{ color: colors.text }, style]}>{children}</Base>;
 };
 
 const Base = styled('Text', {

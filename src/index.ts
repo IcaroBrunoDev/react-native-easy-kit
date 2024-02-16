@@ -1,4 +1,4 @@
-import { Text } from './components/Typography';
+import { Text, Title, Anchor } from './components/Typography';
 
 import Fab from './components/Fab';
 import Button from './components/Button';
@@ -13,5 +13,5 @@ import {
   KitThemeProvider,
 } from './config';
 
-export { Fab, Text, Button, Navbar, Accordion };
+export { Fab, Text, Button, Navbar, Accordion, Title, Anchor };
 export { theme, styled, useTheme, extendTheme, KitThemeProvider };

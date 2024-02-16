@@ -1,16 +1,12 @@
 import { styled } from '../../config';
 
 export const Wrapper = styled('Pressable', {
-  height: 'auto',
+  margin: 10,
   overflow: 'hidden',
-  marginVertical: 10,
   paddingVertical: 8,
-  marginHorizontal: 5,
 });
 
-export const ExpandedWrapper = styled('View', {
-  borderTopWidth: 0.4,
-});
+export const ExpandedWrapper = styled('View');
 
 export const AccordionRetracted = styled('View', {
   display: 'flex',

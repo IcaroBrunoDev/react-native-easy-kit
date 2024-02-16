@@ -16,11 +16,10 @@ const Anchor: FC<AnchorProps> = ({ style, onPress, children }) => {
 const TouchableOpacity = styled('TouchableOpacity');
 
 const Text = styled('Text', {
-  fontSize: 11,
+  fontSize: 13.2,
   fontWeight: '300',
-  fontFamily: '$OpenSans',
-  textDecorationLine: 'underline',
   textDecorationStyle: 'solid',
+  textDecorationLine: 'underline',
 });
 
 export default Anchor;

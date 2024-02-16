@@ -6,11 +6,19 @@ import { useTheme } from '../../config';
 
 import type { FabProps } from './Models';
 import { FabPositions } from '../../constants';
+import { applyVariant } from '../../utils';
 
-const Fab: FC<FabProps> = ({ icon, color, style, position, onPress }) => {
-  const { colors } = useTheme();
+const Fab: FC<FabProps> = ({
+  icon,
+  color,
+  style,
+  variant,
+  position,
+  onPress,
+}) => {
+  const { colors, variants } = useTheme();
 
-  const { wrapper } = useMemo(() => {
+  const styles = useMemo(() => {
     const directions = position ? FabPositions[position] : FabPositions.bottom;
 
     const styles = {
@@ -18,11 +26,11 @@ const Fab: FC<FabProps> = ({ icon, color, style, position, onPress }) => {
       backgroundColor: color ?? colors.primary,
     };
 
-    return { wrapper: styles };
-  }, [color, colors, position]);
+    return applyVariant(styles, variant, variants);
+  }, [colors, color, variant, variants, position]);
 
   return (
-    <Wrapper onPress={onPress} style={[wrapper, style]}>
+    <Wrapper onPress={onPress} style={[styles, style]}>
       {icon}
     </Wrapper>
   );

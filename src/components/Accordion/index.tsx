@@ -1,11 +1,4 @@
-import React, {
-  useCallback,
-  useRef,
-  useState,
-  type FC,
-  type PropsWithChildren,
-  useMemo,
-} from 'react';
+import React, { useCallback, useMemo, useRef, useState, type FC } from 'react';
 import { Animated, LayoutAnimation, Platform, UIManager } from 'react-native';
 
 import Text from '../Typography/Components/Text';
@@ -19,6 +12,7 @@ import {
   Wrapper,
 } from './styles';
 
+import { applyVariant } from '../../utils';
 import type { AccordionProps } from './Models';
 
 if (
@@ -28,37 +22,34 @@ if (
   UIManager.setLayoutAnimationEnabledExperimental(true);
 }
 
-const Accordion: FC<PropsWithChildren<AccordionProps>> = ({
+const Accordion: FC<AccordionProps> = ({
   title,
-  Icon,
+  icon,
   style,
   color,
+  variant,
   rounded,
-  children,
   labelColor,
+  children,
 }) => {
-  const { colors } = useTheme();
+  const { colors, variants } = useTheme();
 
   const arrowAnimation = useRef(new Animated.Value(0)).current;
   const expandedAnimation = useRef(new Animated.Value(0)).current;
 
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
-  const { textStyles, wrapperStyles } = useMemo(() => {
+  const styles = useMemo(() => {
     const { primary, white } = colors;
 
-    const text = { color: labelColor ?? white };
-
-    const wrapper = {
+    const styles = {
+      color: labelColor ?? white,
       borderRadius: rounded ? 8 : 0,
       backgroundColor: color ?? primary,
     };
 
-    return {
-      textStyles: text,
-      wrapperStyles: wrapper,
-    };
-  }, [labelColor, rounded, colors, color]);
+    return applyVariant(styles, variant, variants);
+  }, [labelColor, rounded, colors, color, variant, variants]);
 
   const expandAccordion = useCallback(
     (expandedStatus: boolean) => {
@@ -86,12 +77,12 @@ const Accordion: FC<PropsWithChildren<AccordionProps>> = ({
 
   return (
     <Wrapper
-      style={[wrapperStyles, style]}
+      style={[styles, style]}
       onPress={() => expandAccordion(!isExpanded)}
     >
       <AccordionRetracted>
-        <Text style={textStyles}>{title}</Text>
-        {Icon && title.length < 50 && (
+        <Text style={{ color: styles.color }}>{title}</Text>
+        {icon && (
           <AnimatedArrow
             style={{
               transform: [
@@ -104,7 +95,7 @@ const Accordion: FC<PropsWithChildren<AccordionProps>> = ({
               ],
             }}
           >
-            {Icon}
+            {icon}
           </AnimatedArrow>
         )}
       </AccordionRetracted>
@@ -119,7 +110,6 @@ const Accordion: FC<PropsWithChildren<AccordionProps>> = ({
             inputRange: [0, 1],
             outputRange: [0, 15],
           }),
-          borderColor: colors.primary,
         }}
       >
         {isExpanded && children}
