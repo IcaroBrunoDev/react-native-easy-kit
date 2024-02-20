@@ -5,12 +5,7 @@ import { KitThemeProvider, extendTheme } from 'react-native-easy-kit';
 
 const theme = extendTheme({
   colors: {
-    black: '#000',
-  },
-  variants: {
-    customVariant: {
-      backgroundColor: '$black',
-    },
+    main: '#F6F930',
   },
 });
 

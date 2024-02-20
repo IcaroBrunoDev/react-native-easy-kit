@@ -43,7 +43,6 @@ export default function App() {
           key={`${button}-${index}`}
           title={`Variant ${button} Button`}
           variant={button as any}
-          loading
           onPress={() => console.log(`Pressed ${button} Button`)}
         />
       ))}
