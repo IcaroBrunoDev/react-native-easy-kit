@@ -29,3 +29,10 @@ const MyComponent = () => {
 }
 
 ```
+
+## Return Type
+
+```ts
+type Theme = CustomTheme & BaseTheme;
+
+```
