@@ -1,7 +1,7 @@
 
 # Theme
 
-Theme is an object that contains all the Theme properties, such as colors, variants and more. Easy-kit has a default theme that already provides to you a variety of styles, sizes and spacing as you can see in the table below. Theme also can be changed as you want, you can [`learn more about`](docs/functions/UseTheme.md) how to create a new theme here.
+Theme is an object that contains all the Theme properties, such as colors, variants and more. Easy-kit has a default theme that already provides to you a variety of styles, sizes and spacing as you can see in the table below. Theme also can be changed as you want, you can learn more about how to create a new theme [`here`](docs/functions/UseTheme.md).
 
 
 ## Default Colors
@@ -30,10 +30,8 @@ Theme is an object that contains all the Theme properties, such as colors, varia
 
 ## Variants
 
-| Variant Name  | color | Border Color | Background Color |  
+| Variant Name  | Color | Border Color | Background Color |  
 | -- | -- | -- | -- | 
-| Example Color | ![#0a192f](https://via.placeholder.com/10/0a192f?text=+) #0a192f | dsa | 
-| Example Color | ![#f8f8f8](https://via.placeholder.com/10/f8f8f8?text=+) #f8f8f8 |
-| Example Color | ![#00b48a](https://via.placeholder.com/10/00b48a?text=+) #00b48a |
-| Example Color | ![#00d1a0](https://via.placeholder.com/10/00b48a?text=+) #00d1a0 |
-
+| Success | ![#fff](https://via.placeholder.com/10/fff?text=+) $white | ![#fff](https://via.placeholder.com/10/fff?text=+) $white | ![#55a630](https://via.placeholder.com/10/55a630?text=+) $success
+| Danger | ![#fff](https://via.placeholder.com/10/fff?text=+) $white | ![#fff](https://via.placeholder.com/10/fff?text=+)$white | ![#d00000](https://via.placeholder.com/10/d00000?text=+) $danger
+| Dark | ![#fff](https://via.placeholder.com/10/fff?text=+) $white | ![#4a4e69](https://via.placeholder.com/10/4a4e69?text=+) $dark | ![#FeFeFe](https://via.placeholder.com/10/FeFeFe?text=+) $background  | 
