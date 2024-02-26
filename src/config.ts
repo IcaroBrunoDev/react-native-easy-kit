@@ -1,8 +1,5 @@
-import { theme as defaultTheme } from './theme';
+import createKitTheme from './context';
+import { kitTheme } from './theme';
 
-import createBaseTheme from './context';
-
-export const { theme, styled, useTheme, extendTheme, KitThemeProvider } =
-  createBaseTheme({
-    theme: defaultTheme,
-  });
+export const { theme, styled, useTheme, extendTheme, KitProvider } =
+  createKitTheme(kitTheme);

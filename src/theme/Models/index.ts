@@ -1,13 +1,13 @@
-import type { BaseTheme } from '..';
+import type { ReactNode } from 'react';
 import type { Styles } from '../../models';
 
-type VariantType = 'success' | 'error' | 'warning';
+type BaseVariants = 'success' | 'error' | 'warning';
 
 type Variants = {
-  [P in VariantType | string]: Partial<Record<keyof Styles, string | number>>;
+  [P in BaseVariants | string]: Partial<Record<keyof Styles, string | number>>;
 };
 
-type CustomTheme = {
+type Theme = {
   sizes?: Record<string | number, string | number>;
   space?: Record<string | number, string | number>;
   fonts?: Record<string | number, string | number>;
@@ -16,10 +16,9 @@ type CustomTheme = {
   fontSizes?: Record<string | number, string | number>;
 };
 
-type Theme = CustomTheme & BaseTheme;
-
-type ThemeConfig = {
+type Provider = {
   theme: Theme;
+  children?: ReactNode;
 };
 
-export type { CustomTheme, Variants, Theme, ThemeConfig };
+export type { Theme, Variants, Provider, BaseVariants };

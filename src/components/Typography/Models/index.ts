@@ -1,12 +1,16 @@
-import type { PropsWithChildren } from 'react';
 import type { StyleProp, TextStyle } from 'react-native';
+import type { fonts } from '../../../theme/fonts';
 
 interface StyleText {
+  size?: keyof typeof fonts | number;
+
   style?: StyleProp<TextStyle>;
+
+  children: string;
 }
 
-export type BaseText = PropsWithChildren<StyleText>;
+export type TextProps = StyleText;
 
-export interface AnchorProps extends BaseText {
+export interface AnchorProps extends TextProps {
   onPress: (...args: any) => Promise<any> | any;
 }

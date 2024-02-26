@@ -1,5 +1,6 @@
 import type { ReactElement } from 'react';
 import type { StyleProp, ViewStyle } from 'react-native';
+import type variants from '../../../theme/variants';
 
 type FabPositions = 'top' | 'bottom' | 'top-inverted' | 'bottom-inverted';
 
@@ -12,7 +13,7 @@ export interface FabProps {
 
   style?: StyleProp<ViewStyle>;
 
-  variant?: 'success' | 'danger' | 'warning' | string;
+  variant?: keyof typeof variants;
 
   onPress: (...args: any) => Promise<any> | any;
 }

@@ -4,7 +4,7 @@ const space = ((scales) => {
   let values = {};
 
   for (let i = 0; i < scales.length; i++) {
-    values = { ...values, [i]: (scales[i] as number) * 5 };
+    values = { ...values, [i]: (scales[i] as number) * 4 };
   }
 
   return values;

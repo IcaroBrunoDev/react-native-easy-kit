@@ -6,7 +6,7 @@ import { TouchableOpacity } from './styles';
 
 import { useTheme } from '../../config';
 
-import { applyVariant } from '../../utils';
+import useVariant from '../../hooks/variants';
 import type { ButtonProps } from './Models';
 
 const Button: FC<ButtonProps> = ({
@@ -20,7 +20,8 @@ const Button: FC<ButtonProps> = ({
   outlined,
   variant,
 }) => {
-  const { colors, variants } = useTheme();
+  const { apply } = useVariant();
+  const { colors } = useTheme();
 
   const handlePress = (): void => {
     if (loading) return;
@@ -38,8 +39,8 @@ const Button: FC<ButtonProps> = ({
       backgroundColor: outlined || ghost ? 'transparent' : color ?? primary,
     };
 
-    return applyVariant(styles, variant, variants);
-  }, [outlined, rounded, ghost, color, variant, colors, variants]);
+    return apply(styles, variant);
+  }, [outlined, rounded, ghost, color, variant, apply, colors]);
 
   return (
     <TouchableOpacity
@@ -54,7 +55,9 @@ const Button: FC<ButtonProps> = ({
           accessibilityLabel="Carregando..."
         />
       ) : (
-        <Text style={{ color: styles.color }}>{title}</Text>
+        <Text size="sm" style={{ color: styles.color }}>
+          {title}
+        </Text>
       )}
     </TouchableOpacity>
   );

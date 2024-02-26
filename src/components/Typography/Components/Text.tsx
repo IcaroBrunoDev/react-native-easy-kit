@@ -1,12 +1,18 @@
-import React, { type FC } from 'react';
+import React, { useMemo, type FC } from 'react';
 
-import type { BaseText } from '../Models';
+import type { TextProps } from '../Models';
 import { styled, useTheme } from '../../../config';
 
-const Text: FC<BaseText> = ({ style, children }) => {
+const Text: FC<TextProps> = ({ size, style, children }) => {
   const { colors } = useTheme();
 
-  return <Base style={[{ color: colors.text }, style]}>{children}</Base>;
+  const styles = useMemo(() => {
+    return { fontSize: typeof size === 'string' ? `$${size}` : size ?? '$xs' };
+  }, [size]);
+
+  return (
+    <Base style={[{ ...styles, color: colors.text }, style]}>{children}</Base>
+  );
 };
 
 const Base = styled('Text', {

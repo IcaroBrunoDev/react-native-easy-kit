@@ -8,6 +8,8 @@ import type { FabProps } from './Models';
 import { FabPositions } from '../../constants';
 import { applyVariant } from '../../utils';
 
+import type { KitTheme } from '../../theme';
+
 const Fab: FC<FabProps> = ({
   icon,
   color,
@@ -16,7 +18,7 @@ const Fab: FC<FabProps> = ({
   position,
   onPress,
 }) => {
-  const { colors, variants } = useTheme();
+  const { colors, variants } = useTheme<KitTheme>();
 
   const styles = useMemo(() => {
     const directions = position ? FabPositions[position] : FabPositions.bottom;

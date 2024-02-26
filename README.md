@@ -40,7 +40,7 @@ The library includes some powerful functions, you can read the documentation for
 
 [`extendTheme()`](docs/functions/ExtendTheme.md)
 
-[`<KitThemeProvider />`](docs/functions/KitThemeProvider.md)
+[`<KitProvider />`](docs/functions/KitProvider.md)
 
 ## Installation
 
@@ -65,7 +65,7 @@ If you want to modify the default theme, you first need to understand how the th
 ```tsx
 ...
 
-import { KitThemeProvider, extendTheme } from 'react-native-easy-kit';
+import { KitProvider, extendTheme } from 'react-native-easy-kit';
 
 ...
 
@@ -78,9 +78,9 @@ const theme = extendTheme({
 
 export default function App() {
   return (
-    <KitThemeProvider theme={theme}>
+    <KitProvider theme={theme}>
       ...
-    </KitThemeProvider>
+    </KitProvider>
   );
 }
 

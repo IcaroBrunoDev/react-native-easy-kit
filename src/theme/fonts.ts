@@ -1,8 +1,9 @@
-const sizes = {
-  1: 13,
-  2: 14,
-  3: 15,
-  4: 18,
+const fonts = {
+  xs: 13.2,
+  sm: 14,
+  md: 15,
+  lg: 18,
+  xlg: 22,
 };
 
-export { sizes };
+export { fonts };

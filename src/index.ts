@@ -5,13 +5,7 @@ import Button from './components/Button';
 import Navbar from './components/NavBar';
 import Accordion from './components/Accordion';
 
-import {
-  theme,
-  styled,
-  useTheme,
-  extendTheme,
-  KitThemeProvider,
-} from './config';
+import { theme, styled, useTheme, extendTheme, KitProvider } from './config';
 
 export { Fab, Text, Button, Navbar, Accordion, Title, Anchor };
-export { theme, styled, useTheme, extendTheme, KitThemeProvider };
+export { theme, styled, useTheme, extendTheme, KitProvider };

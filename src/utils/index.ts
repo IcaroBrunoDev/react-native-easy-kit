@@ -1,6 +1,5 @@
 import type { Styles } from '../models';
-import type { BaseTheme } from '../theme';
-import type { CustomTheme, Theme, Variants } from '../theme/Models';
+import type { Theme, Variants } from '../theme/Models';
 
 type UnchainedTheme = {
   [T: string | number]: string | number;
@@ -56,19 +55,16 @@ const unchainTheme = (theme: Theme) => {
   return plainedValues as UnchainedTheme;
 };
 
-export const mergeThemes = <T extends CustomTheme>(
-  theme: BaseTheme,
-  extension: T
-) => {
+export const mergeThemes = <T extends Theme>(theme: Theme, extension: T) => {
   for (const current in theme) {
-    const key = current as keyof BaseTheme;
+    const key = current as keyof Theme;
 
     if (extension.hasOwnProperty(key)) {
       theme = { ...theme, [key]: { ...theme[key], ...extension[key] } };
     }
   }
 
-  return theme as BaseTheme & T;
+  return theme as Theme & T;
 };
 
 export const applyVariant = (

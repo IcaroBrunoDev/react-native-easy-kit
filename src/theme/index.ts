@@ -1,17 +1,14 @@
-import colors from './colors';
 import space from './spaces';
-
-import { sizes as fontSizes } from './fonts';
-
+import colors from './colors';
 import variants from './variants';
 
-export const theme = {
-  colors,
-  sizes: {},
+import { fonts as fontSizes } from './fonts';
+
+export const kitTheme = {
   space,
-  fonts: {},
-  fontSizes,
+  colors,
   variants,
+  fontSizes,
 };
 
-export type BaseTheme = typeof theme;
+export type KitTheme = typeof kitTheme;

@@ -1,17 +1,18 @@
 import { Tabs } from 'expo-router';
 import * as React from 'react';
+import { useColorScheme } from 'react-native';
 
-import { KitThemeProvider, extendTheme } from 'react-native-easy-kit';
+import { KitProvider } from 'react-native-easy-kit';
 
-const theme = extendTheme({
-  colors: {
-    main: '#F6F930',
-  },
-});
+import { dark, theme } from '../../theme';
 
 export default function TabRoutesLayout() {
+  const colorScheme = useColorScheme();
+
+  const currentTheme = colorScheme === 'dark' ? dark : theme;
+
   return (
-    <KitThemeProvider theme={theme}>
+    <KitProvider theme={currentTheme}>
       <Tabs>
         <Tabs.Screen name="index" options={{ title: 'Buttons' }} />
         <Tabs.Screen name="accordion" options={{ title: 'Acordion' }} />
@@ -19,6 +20,6 @@ export default function TabRoutesLayout() {
         <Tabs.Screen name="fab" options={{ title: 'Fab' }} />
         <Tabs.Screen name="typography" options={{ title: 'Typography' }} />
       </Tabs>
-    </KitThemeProvider>
+    </KitProvider>
   );
 }

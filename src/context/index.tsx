@@ -2,10 +2,9 @@ import React, {
   createContext,
   createElement,
   forwardRef,
-  useContext,
-  type PropsWithChildren,
-  type ReactElement,
   memo,
+  useContext,
+  type ReactElement,
 } from 'react';
 
 import * as ReactNative from 'react-native';
@@ -13,55 +12,46 @@ import * as ReactNative from 'react-native';
 import { generateStyles, mergeThemes } from '../utils';
 
 import type { Elements, Styles } from '../models';
-import type { CustomTheme, Theme, ThemeConfig } from '../theme/Models';
+import type { Provider, Theme } from '../theme/Models';
 
-const createBaseTheme = (config: ThemeConfig) => {
-  const defaultTheme = config.theme;
-
-  const ThemeContext = createContext(defaultTheme);
+const createKitTheme = (theme: Theme) => {
+  const ThemeContext = createContext(theme);
 
   /**
    *
-   * @param theme Theme
-   * @returns {ReactElement}
+   * @param param0
+   * @returns
    */
-
-  const KitThemeProvider = ({
-    theme,
-    children,
-  }: PropsWithChildren<ThemeConfig>): ReactElement => {
+  const KitProvider = ({ theme, children }: Provider): ReactElement => {
     return (
       <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>
     );
   };
 
   /**
-   * @returns {Theme}
+   * useTheme Hook
    *
-   * Export a hook that provides access to the current theme.
+   * Returns the current theme object
+   *
+   * @returns {Theme & T}
    */
-
-  const useTheme = (): Theme => useContext(ThemeContext);
+  const useTheme = <T extends Theme>(): Theme & T =>
+    useContext(ThemeContext) as Theme & T;
 
   /**
    *
-   * @param extension {T extends CustomTheme}
-   * @returns theme {BaseTheme & T}
-   *
-   * Merge the existing theme with a new theme object.
+   * @param extension
+   * @returns {Theme & T}
    */
-  const extendTheme = <T extends CustomTheme>(extension: T) =>
-    mergeThemes(defaultTheme, extension);
+  const extendTheme = <T extends Theme>(extension: T): Theme & T =>
+    mergeThemes(theme, extension);
 
   /**
-   * @param element ReactNativeElements
-   * @param styles RNStyles
-   * @returns React.ForwardRefExoticComponent
    *
-   * Create a styled component that inherits theme properties,
-   * whether they are tokens or a styled object.
+   * @param element
+   * @param styles
+   * @returns
    */
-
   const styled = (element: keyof Elements, styles?: Styles) => {
     if (typeof element !== 'string' || !ReactNative[element])
       throw new Error('Element type is not supported');
@@ -82,12 +72,12 @@ const createBaseTheme = (config: ThemeConfig) => {
   };
 
   return {
-    theme: defaultTheme,
+    theme,
     styled,
     useTheme,
     extendTheme,
-    KitThemeProvider,
+    KitProvider,
   };
 };
 
-export default createBaseTheme;
+export default createKitTheme;

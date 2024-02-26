@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ScrollView } from 'react-native';
 
-import { Button, useTheme } from 'react-native-easy-kit';
+import { Button } from 'react-native-easy-kit';
 
 const basics = ['primary', 'secondary'];
 const variants = [
@@ -14,8 +14,6 @@ const variants = [
 ];
 
 export default function App() {
-  const { colors } = useTheme();
-
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   React.useEffect(() => {

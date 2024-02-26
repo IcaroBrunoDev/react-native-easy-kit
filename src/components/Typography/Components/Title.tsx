@@ -1,9 +1,9 @@
 import React, { type FC } from 'react';
 
 import { styled, useTheme } from '../../../config';
-import type { BaseText } from '../Models';
+import type { TextProps } from '../Models';
 
-const Title: FC<BaseText> = ({ children, style }) => {
+const Title: FC<TextProps> = ({ children, style }) => {
   const { colors } = useTheme();
 
   return <Base style={[{ color: colors.text }, style]}>{children}</Base>;
