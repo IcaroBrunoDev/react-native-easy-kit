@@ -1,4 +1,5 @@
 import type { StyleProp, TextStyle } from 'react-native';
+import type { BaseVariants } from '../../../theme/Models';
 
 /**
  * @interface ButtonProps
@@ -44,7 +45,7 @@ export interface ButtonProps {
    *
    */
 
-  variant?: 'success' | 'danger' | 'warning' | string;
+  variant?: BaseVariants;
 
   /**
    * Control outline effect (Transparent background with borders)

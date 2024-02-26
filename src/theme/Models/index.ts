@@ -21,4 +21,4 @@ type Provider = {
   children?: ReactNode;
 };
 
-export type { Theme, Variants, Provider, BaseVariants };
+export type { BaseVariants, Provider, Theme, Variants };
