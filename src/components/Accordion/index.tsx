@@ -6,13 +6,13 @@ import Text from '../Typography/Components/Text';
 import { useTheme } from '../../config';
 
 import {
-  AccordionRetracted,
+  Wrapper,
   ArrowWrapper,
   ExpandedWrapper,
-  Wrapper,
+  AccordionRetracted,
 } from './styles';
 
-import { applyVariant } from '../../utils';
+import useVariant from '../../hooks/variants';
 import type { AccordionProps } from './Models';
 
 if (
@@ -32,10 +32,10 @@ const Accordion: FC<AccordionProps> = ({
   labelColor,
   children,
 }) => {
-  const { colors, variants } = useTheme();
+  const { apply } = useVariant();
+  const { colors } = useTheme();
 
   const arrowAnimation = useRef(new Animated.Value(0)).current;
-  const expandedAnimation = useRef(new Animated.Value(0)).current;
 
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
@@ -48,8 +48,8 @@ const Accordion: FC<AccordionProps> = ({
       backgroundColor: color ?? primary,
     };
 
-    return applyVariant(styles, variant, variants);
-  }, [labelColor, rounded, colors, color, variant, variants]);
+    return apply(styles, variant);
+  }, [apply, rounded, colors, color, variant, labelColor]);
 
   const expandAccordion = useCallback(
     (expandedStatus: boolean) => {
@@ -61,18 +61,13 @@ const Accordion: FC<AccordionProps> = ({
           duration: 350,
           useNativeDriver: false,
         }),
-        Animated.timing(expandedAnimation, {
-          toValue,
-          duration: 350,
-          useNativeDriver: false,
-        }),
       ]).start();
 
       LayoutAnimation.configureNext(LayoutAnimation.Presets.linear);
 
       setIsExpanded(expandedStatus);
     },
-    [arrowAnimation, expandedAnimation]
+    [arrowAnimation]
   );
 
   return (
@@ -83,7 +78,7 @@ const Accordion: FC<AccordionProps> = ({
       <AccordionRetracted>
         <Text style={{ maxWidth: '90%', color: styles.color }}>{title}</Text>
         {icon && (
-          <AnimatedArrow
+          <AnimatedIcon
             style={{
               transform: [
                 {
@@ -96,25 +91,16 @@ const Accordion: FC<AccordionProps> = ({
             }}
           >
             {icon}
-          </AnimatedArrow>
+          </AnimatedIcon>
         )}
       </AccordionRetracted>
 
-      <AccordionExpanded
-        style={{
-          padding: expandedAnimation.interpolate({
-            inputRange: [0, 1],
-            outputRange: [0, 15],
-          }),
-        }}
-      >
-        {isExpanded && children}
-      </AccordionExpanded>
+      <AccordionExpanded>{isExpanded && children}</AccordionExpanded>
     </Wrapper>
   );
 };
 
-const AnimatedArrow = Animated.createAnimatedComponent(ArrowWrapper);
+const AnimatedIcon = Animated.createAnimatedComponent(ArrowWrapper);
 
 const AccordionExpanded = Animated.createAnimatedComponent(ExpandedWrapper);
 

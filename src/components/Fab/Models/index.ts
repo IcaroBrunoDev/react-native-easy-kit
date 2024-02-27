@@ -2,14 +2,14 @@ import type { ReactElement } from 'react';
 import type { StyleProp, ViewStyle } from 'react-native';
 import type variants from '../../../theme/variants';
 
-type FabPositions = 'top' | 'bottom' | 'top-inverted' | 'bottom-inverted';
+type Positions = 'top' | 'bottom' | 'top-inverted' | 'bottom-inverted';
 
 export interface FabProps {
   icon: ReactElement;
 
   color?: string;
 
-  position?: FabPositions;
+  position?: Positions;
 
   style?: StyleProp<ViewStyle>;
 

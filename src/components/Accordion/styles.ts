@@ -6,7 +6,9 @@ export const Wrapper = styled('Pressable', {
   paddingVertical: 8,
 });
 
-export const ExpandedWrapper = styled('View');
+export const ExpandedWrapper = styled('View', {
+  padding: 15,
+});
 
 export const AccordionRetracted = styled('View', {
   display: 'flex',

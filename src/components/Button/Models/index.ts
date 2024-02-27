@@ -1,5 +1,4 @@
 import type { StyleProp, TextStyle } from 'react-native';
-import type { BaseVariants } from '../../../theme/Models';
 
 /**
  * @interface ButtonProps
@@ -16,12 +15,6 @@ export interface ButtonProps {
    * @type {string}
    */
   color?: string;
-
-  /**
-   * Apply Ghost effect on the Button (Transparent Background)
-   * @type {boolean}
-   */
-  ghost?: boolean;
 
   /**
    * Apply/Overwrite the button styles
@@ -45,19 +38,13 @@ export interface ButtonProps {
    *
    */
 
-  variant?: BaseVariants;
+  variant?: string;
 
   /**
    * Control outline effect (Transparent background with borders)
    * @type {boolean}
    */
   outlined?: boolean;
-
-  /**
-   * Change the loading spinner color
-   * @type {string}
-   */
-  loadingColor?: string;
 
   /**
    * OnPress Button Action

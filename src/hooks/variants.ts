@@ -1,11 +1,10 @@
 import { useTheme } from '../config';
 import type { Styles } from '../models';
-import type { BaseVariants } from '../theme/Models';
 
 const useVariant = () => {
   const { variants } = useTheme();
 
-  const apply = (styles: Styles, variant: BaseVariants) => {
+  const apply = (styles: Styles, variant: string) => {
     const pickedVariant = variants[variant];
 
     if (pickedVariant && Reflect.ownKeys(pickedVariant).length) {

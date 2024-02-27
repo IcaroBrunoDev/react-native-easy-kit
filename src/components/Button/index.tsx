@@ -12,7 +12,6 @@ import type { ButtonProps } from './Models';
 const Button: FC<ButtonProps> = ({
   title,
   color,
-  ghost,
   style,
   loading,
   rounded,
@@ -33,14 +32,14 @@ const Button: FC<ButtonProps> = ({
     const { primary, white } = colors;
 
     const styles = {
-      color: outlined || ghost ? color : white,
+      color: outlined ? color : white,
       borderWidth: outlined ? 1 : 0,
       borderRadius: rounded ? 100 : 0,
-      backgroundColor: outlined || ghost ? 'transparent' : color ?? primary,
+      backgroundColor: outlined ? 'transparent' : color ?? primary,
     };
 
     return apply(styles, variant);
-  }, [outlined, rounded, ghost, color, variant, apply, colors]);
+  }, [outlined, rounded, color, variant, apply, colors]);
 
   return (
     <TouchableOpacity
