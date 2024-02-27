@@ -12,6 +12,7 @@ import * as ReactNative from 'react-native';
 import { generateStyles, mergeThemes } from '../utils';
 
 import type { Elements, Styles } from '../models';
+import type { KitTheme } from '../theme';
 import type { Provider, Theme } from '../theme/Models';
 
 const createKitTheme = (theme: Theme) => {
@@ -35,8 +36,8 @@ const createKitTheme = (theme: Theme) => {
    *
    * @returns {Theme & T}
    */
-  const useTheme = <T extends Theme>(): Theme & T =>
-    useContext(ThemeContext) as Theme & T;
+  const useTheme = <T extends Theme>(): KitTheme & T =>
+    useContext(ThemeContext) as KitTheme & T;
 
   /**
    *

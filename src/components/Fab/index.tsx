@@ -1,14 +1,13 @@
-import React, { memo, type FC, useMemo } from 'react';
+import React, { memo, useMemo, type FC } from 'react';
 
 import { Wrapper } from './styles';
 
 import { useTheme } from '../../config';
 
-import type { FabProps } from './Models';
 import { FabPositions } from '../../constants';
-import { applyVariant } from '../../utils';
+import useVariant from '../../hooks/variants';
 
-import type { KitTheme } from '../../theme';
+import type { FabProps } from './Models';
 
 const Fab: FC<FabProps> = ({
   icon,
@@ -18,18 +17,19 @@ const Fab: FC<FabProps> = ({
   position,
   onPress,
 }) => {
-  const { colors, variants } = useTheme<KitTheme>();
+  const { apply } = useVariant();
+  const { colors } = useTheme();
 
   const styles = useMemo(() => {
     const directions = position ? FabPositions[position] : FabPositions.bottom;
 
-    const styles = {
+    const style = {
       ...directions,
       backgroundColor: color ?? colors.primary,
     };
 
-    return applyVariant(styles, variant, variants);
-  }, [colors, color, variant, variants, position]);
+    return apply(style, variant);
+  }, [colors, color, variant, position, apply]);
 
   return (
     <Wrapper onPress={onPress} style={[styles, style]}>

@@ -31,14 +31,14 @@ const Button: FC<ButtonProps> = ({
   const styles = useMemo(() => {
     const { primary, white } = colors;
 
-    const styles = {
+    const style = {
       color: outlined ? color : white,
       borderWidth: outlined ? 1 : 0,
       borderRadius: rounded ? 100 : 0,
       backgroundColor: outlined ? 'transparent' : color ?? primary,
     };
 
-    return apply(styles, variant);
+    return apply(style, variant);
   }, [outlined, rounded, color, variant, apply, colors]);
 
   return (

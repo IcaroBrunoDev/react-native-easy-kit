@@ -6,10 +6,10 @@ import Text from '../Typography/Components/Text';
 import { useTheme } from '../../config';
 
 import {
-  Wrapper,
+  AccordionRetracted,
   ArrowWrapper,
   ExpandedWrapper,
-  AccordionRetracted,
+  Wrapper,
 } from './styles';
 
 import useVariant from '../../hooks/variants';
@@ -36,19 +36,20 @@ const Accordion: FC<AccordionProps> = ({
   const { colors } = useTheme();
 
   const arrowAnimation = useRef(new Animated.Value(0)).current;
+  const expandedAnimation = useRef(new Animated.Value(0)).current;
 
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
   const styles = useMemo(() => {
     const { primary, white } = colors;
 
-    const styles = {
+    const style = {
       color: labelColor ?? white,
       borderRadius: rounded ? 8 : 0,
       backgroundColor: color ?? primary,
     };
 
-    return apply(styles, variant);
+    return apply(style, variant);
   }, [apply, rounded, colors, color, variant, labelColor]);
 
   const expandAccordion = useCallback(
@@ -61,13 +62,18 @@ const Accordion: FC<AccordionProps> = ({
           duration: 350,
           useNativeDriver: false,
         }),
+        Animated.timing(expandedAnimation, {
+          toValue,
+          duration: 350,
+          useNativeDriver: false,
+        }),
       ]).start();
 
       LayoutAnimation.configureNext(LayoutAnimation.Presets.linear);
 
       setIsExpanded(expandedStatus);
     },
-    [arrowAnimation]
+    [arrowAnimation, expandedAnimation]
   );
 
   return (
@@ -78,7 +84,7 @@ const Accordion: FC<AccordionProps> = ({
       <AccordionRetracted>
         <Text style={{ maxWidth: '90%', color: styles.color }}>{title}</Text>
         {icon && (
-          <AnimatedIcon
+          <AnimatedArrow
             style={{
               transform: [
                 {
@@ -91,16 +97,25 @@ const Accordion: FC<AccordionProps> = ({
             }}
           >
             {icon}
-          </AnimatedIcon>
+          </AnimatedArrow>
         )}
       </AccordionRetracted>
 
-      <AccordionExpanded>{isExpanded && children}</AccordionExpanded>
+      <AccordionExpanded
+        style={{
+          padding: expandedAnimation.interpolate({
+            inputRange: [0, 1],
+            outputRange: [0, 15],
+          }),
+        }}
+      >
+        {isExpanded && children}
+      </AccordionExpanded>
     </Wrapper>
   );
 };
 
-const AnimatedIcon = Animated.createAnimatedComponent(ArrowWrapper);
+const AnimatedArrow = Animated.createAnimatedComponent(ArrowWrapper);
 
 const AccordionExpanded = Animated.createAnimatedComponent(ExpandedWrapper);
 

@@ -14,8 +14,7 @@ const FabScreen = () => {
   return (
     <View>
       <Fab
-        color={colors.secondary}
-        icon={<MaterialIcons name="add" size={25} color={colors.white} />}
+        icon={<MaterialIcons name="work" size={25} color={colors.white} />}
         onPress={() => console.log('Fab Pressed')}
       />
     </View>
