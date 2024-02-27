@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { View } from './styles';
+import { View } from '../../styles';
 
 import { Fab, useTheme } from 'react-native-easy-kit';
 
@@ -8,7 +8,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 import type { Theme } from '../../theme';
 
-const RenderFab = () => {
+const FabScreen = () => {
   const { colors } = useTheme<Theme>();
 
   return (
@@ -22,4 +22,4 @@ const RenderFab = () => {
   );
 };
 
-export default RenderFab;
+export default FabScreen;

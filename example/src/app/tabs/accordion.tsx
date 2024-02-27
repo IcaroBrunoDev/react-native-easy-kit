@@ -5,7 +5,7 @@ import { fakeFAQ } from '../../utils/fakers';
 
 import { MaterialIcons } from '@expo/vector-icons';
 
-const RenderAccordion = () => {
+export const AccordionScreen = () => {
   const { colors } = useTheme();
 
   return (
@@ -29,5 +29,3 @@ const RenderAccordion = () => {
     />
   );
 };
-
-export default RenderAccordion;

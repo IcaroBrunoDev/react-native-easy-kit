@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { View } from './styles';
+import { View } from '../../styles';
 
 import { Anchor, Text, Title } from 'react-native-easy-kit';
 
-const RenderTypography = () => {
+const TypographyScreen = () => {
   return (
     <View>
       <Text>This is a base text example</Text>
@@ -18,4 +18,4 @@ const RenderTypography = () => {
   );
 };
 
-export default RenderTypography;
+export default TypographyScreen;

@@ -13,7 +13,7 @@ const variants = [
   'customVariant',
 ];
 
-export default function App() {
+export const ButtonScreen = () => {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   React.useEffect(() => {
@@ -84,4 +84,4 @@ export default function App() {
       /> */}
     </ScrollView>
   );
-}
+};

@@ -13,7 +13,7 @@ export const theme = extendTheme({
 
 export const dark = extendTheme({
   colors: {
-    main: 'grey',
+    main: '#000',
   },
 });
 
