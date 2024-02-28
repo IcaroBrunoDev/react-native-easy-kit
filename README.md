@@ -24,8 +24,6 @@ We have some ready-made components; you can check out the documentation for each
 
 [`<Button />`](docs/components/Button.md)
 
-[`<NavBar />`](docs/components/NavBar.md)
-
 [`<Accordion />`](docs/components/Accordion.md)
 
 [`<Typography />`](docs/components/Typography.md)
