@@ -1,5 +1,5 @@
 import { useTheme } from '../config';
-import type { Styles } from '../models';
+import type { Styles } from '../models/styles';
 
 const useVariant = () => {
   const { variants } = useTheme();

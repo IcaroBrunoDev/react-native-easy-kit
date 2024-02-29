@@ -11,9 +11,10 @@ import * as ReactNative from 'react-native';
 
 import { generateStyles, mergeThemes } from '../utils';
 
-import type { Elements, Styles } from '../models';
+import type { Elements } from '../models';
 import type { KitTheme } from '../theme';
 import type { Provider, Theme } from '../theme/Models';
+import type { Styles } from '../models/styles';
 
 const createKitTheme = (theme: Theme) => {
   const ThemeContext = createContext(theme);
@@ -53,7 +54,7 @@ const createKitTheme = (theme: Theme) => {
    * @param styles
    * @returns
    */
-  const styled = (element: keyof Elements, styles?: Styles) => {
+  const styled = <T extends keyof Elements>(element: T, styles?: Styles) => {
     if (typeof element !== 'string' || !ReactNative[element])
       throw new Error('Element type is not supported');
 
@@ -69,7 +70,9 @@ const createKitTheme = (theme: Theme) => {
       });
     });
 
-    return memo(Component);
+    return memo(Component) as React.ComponentType<
+      Omit<Elements[T], 'style'> & any & { style: Styles }
+    >;
   };
 
   return {

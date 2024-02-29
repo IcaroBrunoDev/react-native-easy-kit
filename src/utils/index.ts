@@ -1,7 +1,7 @@
-import type { Styles } from '../models';
+import type { Styles } from '../models/styles';
 import type { Theme, Variants } from '../theme/Models';
 
-type UnchainedTheme = {
+type FlatTheme = {
   [T: string | number]: string | number;
 };
 
@@ -32,19 +32,19 @@ const transformTokens = (theme: Theme, styles: Omit<Styles, 'Falsy'>) => {
     const [key, value] = [style, styles[style as keyof Styles]];
 
     if (value && typeof value === 'string' && value[0] === '$') {
-      const plainedTheme = unchainTheme(theme);
+      const flatTheme = createFlatTheme(theme);
 
       const removedTokenStyle = (value as string).substring(1);
 
-      if (plainedTheme[removedTokenStyle])
-        styles = { ...styles, [key]: plainedTheme[removedTokenStyle] };
+      if (flatTheme[removedTokenStyle])
+        styles = { ...styles, [key]: flatTheme[removedTokenStyle] };
     }
   }
 
   return styles;
 };
 
-const unchainTheme = (theme: Theme) => {
+const createFlatTheme = (theme: Theme) => {
   let plainedValues = {};
 
   for (const key in theme) {
@@ -52,7 +52,7 @@ const unchainTheme = (theme: Theme) => {
       plainedValues = { ...plainedValues, ...theme[key as keyof Theme] };
   }
 
-  return plainedValues as UnchainedTheme;
+  return plainedValues as FlatTheme;
 };
 
 export const mergeThemes = <T extends Theme>(theme: Theme, extension: T) => {

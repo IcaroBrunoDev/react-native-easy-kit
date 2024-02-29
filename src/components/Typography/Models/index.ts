@@ -1,16 +1,14 @@
-import type { StyleProp, TextStyle } from 'react-native';
+import type { Styles } from '../../../models/styles';
 import type { fonts } from '../../../theme/fonts';
 
-interface StyleText {
+export type TypographyProps = {
   size?: keyof typeof fonts | number;
 
-  style?: StyleProp<TextStyle>;
+  style?: Styles;
 
   children: string;
-}
+};
 
-export type TextProps = StyleText;
-
-export interface AnchorProps extends TextProps {
+export interface AnchorProps extends TypographyProps {
   onPress: (...args: any) => Promise<any> | any;
 }

@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import type { Styles } from '../../models';
+import type { Styles } from '../../models/styles';
 
 type BaseVariants = 'success' | 'error' | 'warning';
 

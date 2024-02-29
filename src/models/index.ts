@@ -3,10 +3,8 @@ import type { PropsWithChildren } from 'react';
 import type {
   ButtonProps,
   FlatListProps,
-  FlexStyle,
   ImageBackgroundProps,
   ImageProps,
-  ImageStyle,
   InputAccessoryViewProps,
   KeyboardAvoidingViewProps,
   PressableProps,
@@ -14,19 +12,17 @@ import type {
   SectionListProps,
   TextInputProps,
   TextProps,
-  TextStyle,
   TouchableHighlightProps,
   TouchableNativeFeedbackProps,
   TouchableOpacityProps,
   TouchableWithoutFeedbackProps,
   ViewProps,
-  ViewStyle,
 } from 'react-native';
 
 /**
  * @description
- * Manual ReactNativeElements type (copied from stitches library)
- * Used to create type assertions in the @function styled
+ *
+ * React Native Elements Types
  */
 
 type Elements = {
@@ -49,31 +45,4 @@ type Elements = {
   View: PropsWithChildren<ViewProps>;
 };
 
-type PropsToChange =
-  | 'margin'
-  | 'marginTop'
-  | 'marginBottom'
-  | 'marginLeft'
-  | 'marginRight'
-  | 'marginVertical'
-  | 'marginHorizontal'
-  | 'padding'
-  | 'paddingTop'
-  | 'paddingVertical'
-  | 'paddingHorizontal';
-
-type SpaceTypes = {
-  [P in PropsToChange]: string | number;
-};
-
-type Styles = Partial<
-  Omit<ViewStyle & FlexStyle & TextStyle & ImageStyle, PropsToChange> &
-    SpaceTypes
->;
-
-type ComponentStyles = {
-  text: TextStyle;
-  wrapper: Styles;
-};
-
-export type { Elements, Styles, ComponentStyles };
+export type { Elements };

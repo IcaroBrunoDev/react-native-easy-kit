@@ -1,17 +1,17 @@
 import React, { useMemo, type FC } from 'react';
 
-import type { TextProps } from '../Models';
 import { styled, useTheme } from '../../../config';
+import type { TypographyProps } from '../Models';
 
-const Text: FC<TextProps> = ({ size, style, children }) => {
+const Text: FC<TypographyProps> = ({ size, style, children }) => {
   const { colors } = useTheme();
 
-  const styles = useMemo(() => {
-    return { fontSize: typeof size === 'string' ? `$${size}` : size ?? '$xs' };
+  const fontSize = useMemo(() => {
+    return typeof size === 'string' ? `$${size}` : size ?? '$xs';
   }, [size]);
 
   return (
-    <Base style={[{ ...styles, color: colors.text }, style]}>{children}</Base>
+    <Base style={[{ fontSize, color: colors.text }, style]}>{children}</Base>
   );
 };
 
