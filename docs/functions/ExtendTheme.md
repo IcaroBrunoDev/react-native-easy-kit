@@ -1,52 +1,54 @@
 # extendTheme
 
-This hook merge/overwrite the default theme with the a new given theme.
+This hook extends the [`Kit Theme`](docs/functions/Theme.md) object.
 
 ## About
 
-This hook is the core of the Themification system, it has the responsability for merge the `default kit theme` with a new providen theme.
+This functions has the responsability to create a new [`Theme Object`](docs/functions/Theme.md) based on the [`Kit Theme`](docs/functions/Theme.md) and a provided new [`Theme Object`](docs/functions/Theme.md).
 
-It is required when you need to expand or even create from scratch a new theme.
+You can use this Hook to create custom themes in your application, either entirely overwriting the `Kit Theme` or creating a new `Theme Object` from scratch.
 
-## How to useTheme
+## How to use
 
-First, lets create a dedicated file, which has the responsability to export your custom themes and types.
-
-This structure can't be the ideal for your application, but don't worry, you can structure your themes as you want.
-
-```
-- src/
-  - themes/
-    - index.(ts | js)
-```
-
-Now, inside `themes/index`, lets create our first theme and called it as `light`
+First, import the `extendedTheme` hook
 
 ```ts
 import { extendTheme } from 'react-native-easy-kit';
+```
 
-export const theme = extendTheme({
+After that, you can create new theme following the example below:
+
+```ts
+/** Overwriting the primary color value */
+
+import { extendTheme } from 'react-native-easy-kit';
+
+const theme = extendTheme({
   colors: {
     primary: 'MY_PRIMARY_COLOR',
   },
 });
 ```
 
-To finish it off, import your new theme into `KitProvider` context
+Now, import your `theme` into the `KitProvider` Context:
 
 ```ts
-import { light } from 'themes';
+import { theme } from 'path/to/theme';
 
 const App = () => {
   return <KitProvider theme={theme}>...</KitProvider>;
 };
 ```
 
+That's it. You are now able to use the new `primary` color anywhere in your application.
+
+Note that when you overwrite the `primary` color, every prebuilt component will be affected. It means that if your `primary` is `#000`, now every component that uses the `primary` color as `backgroundColor` for example, will receives `#000` as value.
+
+To understand more about Theme overwriting and extension, take a look in the [`Theme`](docs/functions/Theme.md) documentation.
+
 ## Type Enforcing
 
-When you extend the default theme, is possible to create new values that doesn't exist in the easy theme as default. When you do that, you can leverage the power of type-responsiviness to inform to your `useTheme` hook the new theme values, let's see how it works in the example below:
-
-First, lets create a custom variant called `myCustomVariant` and store the result of merging in the `theme` variable.
+When you extend the default theme, is possible to create new values that doesn't exist yet. When you do that, you can leverage the power of the `type-responsiviness` to inform to your `useTheme` hook the new theme values, as you can see in the following example:
 
 ```ts
 import { extendTheme } from 'react-native-easy-kit';
@@ -62,15 +64,13 @@ export const theme = extendTheme({
 });
 ```
 
-Then we can declare a new type of `Theme` using the `theme` values itself:
+After create yout custom value, you must create a new `Type` that extends the `theme` values itself:
 
 ```ts
-... code above
-
-export type Theme = keyof theme
+export type Theme = keyof theme;
 ```
 
-Now, when you use the `useTheme` hook, pass the generic `Theme`
+You can now pass the `Theme` to the `useTheme` hook as a generic type, like this:
 
 ```ts
 import type { Theme } from 'path/to/theme';
@@ -78,14 +78,14 @@ import type { Theme } from 'path/to/theme';
 const { variants } = useTheme<Theme>();
 ```
 
-Now when you use the `variants` the IDE will suggest your `myCustomVariant` value.
-
 ## Multiple themes
 
-To create a new theme is simple, you can do:
+The extendTheme was designed to work with multiples themes. Note that two `Themes` don't talk each other, and you can't provide to the `KitProvider` two themes at same time, but you can declare how many themes as you need and change between them as your needs.
+
+To create a new theme, you can follow the same process above described in `How to use`.
 
 ```ts
-export const dark = extendTheme({
+const dark = extendTheme({
     colors : {
         primary: "MY_DARK_COLOR"
         ...
@@ -94,7 +94,13 @@ export const dark = extendTheme({
 })
 ```
 
-After that, you need to export your theme to the `KitProvider` as the example above. To get a better undestanding about how you can change between themes, read the `KitProvider` documentation.
+To type enforce your new theme, follow the example below:
+
+```ts
+export type Theme = keyof theme & keyof dark;
+```
+
+**This is a experimental way to type enforce the second theme, if you have an improvment suggestion just let me know.**
 
 ## Types
 

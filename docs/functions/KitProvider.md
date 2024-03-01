@@ -4,7 +4,7 @@ This context allows you to change the global theme value.
 
 ## How to use
 
-Frist, import the KitProvider into your App.js
+First, import the KitProvider into your App.js
 
 ```ts
 ...
@@ -39,13 +39,13 @@ export const App = () =>  {
 }
 ```
 
-It's all ;)
+That's it!
 
 # Multiple themes
 
 Change between themes is not a hard task, but requires some previous knowledge about `Dark Theme` and `Theme`.
 
-Once you already have read and understood how to create a `Dark Theme`, you need to define a trigger to change between your themes, here I'll use the device colorScheme, it reconizes the current device colorScheme and return to us if the client is on `light` or `dark` mode. Let's see more in the code below:
+Once you have read and understood how to create a `Dark Theme`, you need to define a trigger to change between your themes. Here I'll use the device colorScheme, it recognizes the current device colorScheme and return to us if the client is on `light` or `dark` mode. Let's see more in the snippet below:
 
 ```ts
 import { light, dark } from 'path/to/theme';
