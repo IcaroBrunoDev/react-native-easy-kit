@@ -16,9 +16,9 @@ import { Button } from 'react-native-easy-kit';
 
 ## Button Props
 
-| Prop     | Type                             | Required | Default Value | Description                                                                                                                                                                                          |
-| -------- | -------------------------------- | -------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- | ------------------------ |
-| title    | `String`                         | true     |               | Button text                                                                                                                                                                                          |
+| Prop     | Type | Required | Default Value | Description   |
+| -------- | ---- | -------- | ------------- | ------------- |
+| title    | `String` | true     |   | Button text  |
 | color    | `String`                         | false    |               | Apply a custom color as `backgroundColor`, `title` color and `` `<ActivityIndicator />` `` spinner color. It doesn't change the `borderColor` property                                               |
 | style    | `Styles`                         | false    |               | [`Styles`](docs/Types.md)                                                                                                                                                                            |     | Fab variant color scheme |
 | loading  | `Boolean`                        | false    | false         | Render the `` `<ActivityIndicator />` `` instead of `title` prop. By default the spinner color will be white, but `ghost` props can aplly `color` as spinner color if `color` props contains a value |
