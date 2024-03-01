@@ -6,71 +6,98 @@ This hook merge/overwrite the default theme with the a new given theme.
 
 This hook is the core of the Themification system, it has the responsability for merge the `default kit theme` with a new providen theme.
 
-It is required when you need to expand or even create from scratch a new theme. Here I gonna show you how to use this hook and the good practices when use it.
+It is required when you need to expand or even create from scratch a new theme.
 
-## Good practices
+## How to useTheme
 
-When we are working with themes, is common to have two or more themes like light and dark. When we are talking about Software Architeture, is a bad practice to put all things thogether, so, in this example, I'll share the responsability of theming between folder, I higly recomment to put your themes in a folder called `themes/`, like
+First, lets create a dedicated file, which has the responsability to export your custom themes and types.
+
+This structure can't be the ideal for your application, but don't worry, you can structure your themes as you want.
 
 ```
 - src/
   - themes/
-    - index.ts
-
+    - index.(ts | js)
 ```
+
+Now, inside `themes/index`, lets create our first theme and called it as `light`
 
 ```ts
+import { extendTheme } from 'react-native-easy-kit';
 
-import { useTheme } from 'react-native-easy-kit';
-
-...
-
-const MyComponent = () => {
-
- const theme = useTheme();
-
- ...
-
- return (
-    <Component style={{ backgroundColor: theme.colors.background }}>
-        ...
-    </Component>
- )
-
-}
+export const theme = extendTheme({
+  colors: {
+    primary: 'MY_PRIMARY_COLOR',
+  },
+});
 ```
 
-Now my `<Component />` has the current theme `background` value.
-
-You can also simplify this code:
+To finish it off, import your new theme into `KitProvider` context
 
 ```ts
-const { colors } = useTheme();
+import { light } from 'themes';
 
-return (
-  <Component style={{ backgroundColor: colors.background }}>...</Component>
-);
+const App = () => {
+  return <KitProvider theme={theme}>...</KitProvider>;
+};
 ```
 
-This Hook is `type-responsive`, it means that you can `type-enforce` it returns. First you need to have done the definition of your theme Type, if you haven't done yet, take a look at the [`Theme Documentation`](docs/Theme.md) before you go.
+## Type Enforcing
 
-Once it's done, you can enforce the current theme type like the e.g below:
+When you extend the default theme, is possible to create new values that doesn't exist in the easy theme as default. When you do that, you can leverage the power of type-responsiviness to inform to your `useTheme` hook the new theme values, let's see how it works in the example below:
+
+First, lets create a custom variant called `myCustomVariant` and store the result of merging in the `theme` variable.
+
+```ts
+import { extendTheme } from 'react-native-easy-kit';
+
+export const theme = extendTheme({
+    variants : {
+        myCustomVariant : {
+            padding: '$5'
+            fontSize: '$xlg',
+            backgroundColor: "CUSTOM_COLOR",
+        }
+    }
+});
+```
+
+Then we can declare a new type of `Theme` using the `theme` values itself:
+
+```ts
+... code above
+
+export type Theme = keyof theme
+```
+
+Now, when you use the `useTheme` hook, pass the generic `Theme`
 
 ```ts
 import type { Theme } from 'path/to/theme';
-import { useTheme } from 'react-native-easy-kit';
 
-const MyComponent = () => {
-  const { colors } = useTheme<Theme>();
-
-  return (
-    <Component style={{ backgroundColor: colors.background }}>...</Component>
-  );
-};
+const { variants } = useTheme<Theme>();
 ```
+
+Now when you use the `variants` the IDE will suggest your `myCustomVariant` value.
+
+## Multiple themes
+
+To create a new theme is simple, you can do:
+
+```ts
+export const dark = extendTheme({
+    colors : {
+        primary: "MY_DARK_COLOR"
+        ...
+    }
+    ...
+})
+```
+
+After that, you need to export your theme to the `KitProvider` as the example above. To get a better undestanding about how you can change between themes, read the `KitProvider` documentation.
 
 ## Types
 
 ```ts
-useTheme = <T extends Theme>(): KitTheme & T
+extendTheme = <T extends Theme>(extension: T): Theme & T
 ```
