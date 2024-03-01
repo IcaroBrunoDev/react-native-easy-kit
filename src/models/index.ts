@@ -18,6 +18,7 @@ import type {
   TouchableWithoutFeedbackProps,
   ViewProps,
 } from 'react-native';
+import type { Styles } from './styles';
 
 /**
  * @description
@@ -45,4 +46,10 @@ type Elements = {
   View: PropsWithChildren<ViewProps>;
 };
 
-export type { Elements };
+type ElementStyles = {
+  style?: Styles | Styles[];
+};
+
+type PropsFunction = (...args: any) => Promise<any> | any;
+
+export type { Elements, ElementStyles, PropsFunction };

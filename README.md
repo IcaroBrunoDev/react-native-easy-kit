@@ -10,17 +10,19 @@ The React Native Easy kit was developed to unify the best of the world of UI com
 
 ## About
 
-Development of this library was inspired by the features of Stitches library (also Styled-Components). This includes the easy way to create styled-components, the possibility to create and apply your own theme and use tokenizing to apply styles onto your components, and the ease of having pre-made components, such as Buttons and Typography with a low level of default styles.The goal was reducing the pain of customizing the library components and the necessity of combining two or more libraries that don’t talk to each other (we have all probably had to do that 😊).
+The development of this library was inspired by the features of stitches/react and styled-components libraries. It aims to combine ready-made UI components with the capacity to create custom components/themes in one place.
 
-This library aims to provide powerful functions that give you the power of css-in-js libraries, such as styled functions, themes, tokenizing and inherit styles, while providing daily-uses components ready to use. And as a result, improving your development time and reducing the necessity of spending hours configuring libraries and making them work.
-
-This library wasn’t made by a team (unless you consider one developer to be a team lol). This means that it could have failures and crash points, so feel free to collaborate with your PR, and contributors that want to improve this library are welcome, just send me a DM in my LinkedIn above.
+You can quickly customize the ready-made components or create your own components with near-zero configuration. Also apply your own colors, spacing, variants and more. Besides, the ready-made components change when your theme change (responsiveness is the key here).
 
 ## Components
 
-We have some ready-made components; you can check out the documentation for each one in the list below:
+** More components comming soon... **
+
+You can access the documentation for each of them below:
 
 [`<Fab />`](docs/components/Fab.md)
+
+[`<Input />`](docs/components/Input.md)
 
 [`<Button />`](docs/components/Button.md)
 
@@ -30,7 +32,7 @@ We have some ready-made components; you can check out the documentation for each
 
 ## Functionalities
 
-The library includes some powerful functions, you can read the documentation for each one in the list below:
+You can access the documentation for each of them below:
 
 [`theme`](docs/functions/Theme.md)
 
@@ -56,9 +58,9 @@ yarn add react-native-easy-kit
 
 ## Setup
 
-If you don’t want to customize the default theme, you don’t need to configure anything, just check out the Components/Functions documentation and have fun.
+The React Native Easy Kit is almost zero-configuration, everything that you need to start is already configured, but if you want to customize the default theme and add your own you need to follow the steps above or take a look at {doc} to understand more about custom theme creation and how to work with dark theme.
 
-If you want to modify the default theme, you first need to understand how the themification works (put link here). After that, you can import the ThemeContext and use the extendTheme function to extend/overwrite the default theme as in the example below:
+First, create your new theme using the `extendTheme()` function. It will return to you a custom theme object, which is a extension of the default theme. You can understand more how it works here.
 
 ```tsx
 ...
@@ -73,6 +75,12 @@ const theme = extendTheme({
     violet: 'violet',
   },
 });
+```
+
+Then, wrap your components with the KitProvider Context. Note that you must pass the theme as property to the Context.
+
+```tsx
+...
 
 export default function App() {
   return (
@@ -81,15 +89,17 @@ export default function App() {
     </KitProvider>
   );
 }
-
-
 ```
 
 ## Developer Notes
 
-This is the first version of this library, so you can expect more components (Carousel, Modal, Tooltips) and more functionalities (compounds styles, variants, and support to fonts) to come.
+This is the first version of this library, so you can expect more components and more functionalities as soon as I can make.
 
-Others todo`s are implementing tests and improving the CI/CD pipeline.
+This library wasn’t made by a team (unless you consider one developer to be a team lol). This means that it could have failures and crash points, so feel free to collaborate with your PR.
+
+Contributions that want to improve this library are welcome, you can DM me on my LinkedIn.
+
+You can learn about the TODO's here
 
 ## License
 

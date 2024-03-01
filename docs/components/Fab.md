@@ -16,12 +16,13 @@ import { Fab } from 'react-native-easy-kit';
 
 ## FabProps
 
-| Prop     | Type           | Required | Default Value | Description              |
-| -------- | -------------- | -------- | ------------- | ------------------------ |
-| icon     | `ReactElement` | true     |               | Button icon              |
-| color    | `String`       | false    | #00b4d8       | Custom color             |
-| position | `Positions`    | false    | bottom        | Fab position             |
-| variant  | `String`       | false    |               | Fab variant color scheme |
+| Prop     | Type                             | Required | Default Value               | Description                                         |
+| -------- | -------------------------------- | -------- | --------------------------- | --------------------------------------------------- |
+| icon     | `ReactNode`                      | true     |                             | Fab icon .                                          |
+| color    | `String`                         | false    | [`$primary`](docs/Theme.md) | Background color. Does not apply color to the icon. |
+| position | `Positions`                      | false    | `bottom`                    | Placement value.                                    |
+| variant  | `String`                         | false    |                             | Fab variant scheme.                                 |
+| onPress  | [`PropsFunction`](docs/Types.md) | true     |                             | Action callback.                                    |
 
 ## Types
 
@@ -31,11 +32,11 @@ type Positions = 'top' | 'bottom' | 'top-inverted' | 'bottom-inverted';
 
 ```ts
 type FabProps = {
-  icon: ReactElement;
+  icon: ReactNode;
   color?: string;
-  position?: Positions;
-  style?: StyleProp<ViewStyle>;
+  style?: Styles;
   variant?: string;
-  onPress: (...args: any) => Promise<any> | any;
+  position?: Positions;
+  onPress: PropsFunction;
 };
 ```

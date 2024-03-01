@@ -1,6 +1,6 @@
 import { Tabs } from 'expo-router';
 import * as React from 'react';
-import { useColorScheme } from 'react-native';
+import { Pressable, useColorScheme } from 'react-native';
 
 import { KitProvider } from 'react-native-easy-kit';
 
@@ -20,6 +20,8 @@ const RoutesLayout = () => {
         <Tabs.Screen name="accordion" options={{ title: 'Acordion' }} />
         <Tabs.Screen name="typography" options={{ title: 'Typography' }} />
       </Tabs>
+
+      <Pressable></Pressable>
     </KitProvider>
   );
 };

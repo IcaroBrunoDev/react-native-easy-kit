@@ -1,6 +1,6 @@
 # `<Accordion />`
 
-Accordion is an animated component that shows and hides it's children when you press it up.
+Accordion is an animated component that shows and hides it's children when is pressed.
 
 ## Import
 
@@ -14,7 +14,6 @@ import { Accordion } from 'react-native-easy-kit';
 <Accordion
    title='Accordion Example'
    icon={<Icon ... />}
-   onPress={onPressCallback}
  >
    {children}
 </Accordion>
@@ -22,27 +21,27 @@ import { Accordion } from 'react-native-easy-kit';
 
 ## Accordion Props
 
-| Prop       | Type            | Required          | Default Value | Description                                                                                                                                                                                          |
-| ---------- | --------------- | ----------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
-| title      | `String`        | true              |               | Accondion title. This title appears even if the accordion is                                                                                                                                         |
-| color      | `String`        | false             |               | Apply a custom color as `backgroundColor`. It doesn't change the `borderColor` property                                                                                                              |
-| style      | `String`        | false             | {}            |                                                                                                                                                                                                      |
-| loading    | `Boolean`       | false             | false         | Render the `` `<ActivityIndicator />` `` instead of `title` prop. By default the spinner color will be white, but `ghost` props can aplly `color` as spinner color if `color` props contains a value |
-| rounded    | `Boolean`       | false             | false         | Apply `borderRadius: 8` and force borders to get more rounded                                                                                                                                        |
-| labelColor | `String`        | false             |               | Apply a custom color in the `title` element                                                                                                                                                          |
-| children   | ```ReactElement | ReactElement[]``` | true          |                                                                                                                                                                                                      | Accordion children |
+| Prop       | Type        | Required | Default Value             | Description                                                                                             |
+| ---------- | ----------- | -------- | ------------------------- | ------------------------------------------------------------------------------------------------------- |
+| title      | `String`    | true     |                           | Accondion title. This title appears even if the accordion isn't expanded.                               |
+| color      | `String`    | false    |                           | Apply a custom color as `backgroundColor`. It doesn't change the `borderColor` property.                |
+| style      | `Styles`    | false    |                           | [`Styles`](docs/Types.md)                                                                               |
+| icon       | `ReactNode` | true     |                           | Accordion Expansible Icon. This Icon spins down and up when the component opens and close respectively. |
+| rounded    | `Boolean`   | false    | false                     | Apply `borderRadius: 8` and force borders to get more rounded.                                          |
+| labelColor | `String`    | false    | [`$white`](docs/Theme.md) | Apply a custom color in the `title` element.                                                            |
+| children   | `ReactNode` | false    |                           | Accordion children.                                                                                     |
 
 ## Types
 
 ```ts
-interface ButtonProps {
+interface AccordionProps {
   title: string;
   color?: string;
-  style?: StyleProp<TextStyle>;
+  style?: Styles;
   loading?: boolean;
   rounded?: boolean;
   variant?: string;
   outlined?: boolean;
-  onPress: (...args: any) => Promise<any> | any;
+  children: ReactNode;
 }
 ```

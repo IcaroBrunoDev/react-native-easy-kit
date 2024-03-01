@@ -4,27 +4,26 @@ import React, {
   forwardRef,
   memo,
   useContext,
-  type ReactElement,
 } from 'react';
 
 import * as ReactNative from 'react-native';
 
 import { generateStyles, mergeThemes } from '../utils';
 
-import type { Elements } from '../models';
+import type { ElementStyles, Elements } from '../models';
+import type { Styles } from '../models/styles';
 import type { KitTheme } from '../theme';
 import type { Provider, Theme } from '../theme/Models';
-import type { Styles } from '../models/styles';
 
-const createKitTheme = (theme: Theme) => {
-  const ThemeContext = createContext(theme);
+const createKitTheme = (defaultTheme: Theme) => {
+  const ThemeContext = createContext(defaultTheme);
 
   /**
    *
    * @param param0
    * @returns
    */
-  const KitProvider = ({ theme, children }: Provider): ReactElement => {
+  const KitProvider = ({ theme, children }: Provider) => {
     return (
       <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>
     );
@@ -46,7 +45,7 @@ const createKitTheme = (theme: Theme) => {
    * @returns {Theme & T}
    */
   const extendTheme = <T extends Theme>(extension: T): Theme & T =>
-    mergeThemes(theme, extension);
+    mergeThemes(defaultTheme, extension);
 
   /**
    *
@@ -54,7 +53,10 @@ const createKitTheme = (theme: Theme) => {
    * @param styles
    * @returns
    */
-  const styled = <T extends keyof Elements>(element: T, styles?: Styles) => {
+  const styled = <T extends keyof Elements>(
+    element: T,
+    styles?: Styles | Styles[]
+  ) => {
     if (typeof element !== 'string' || !ReactNative[element])
       throw new Error('Element type is not supported');
 
@@ -71,12 +73,12 @@ const createKitTheme = (theme: Theme) => {
     });
 
     return memo(Component) as React.ComponentType<
-      Omit<Elements[T], 'style'> & any & { style: Styles }
+      Omit<Elements[T], 'style'> & ElementStyles & { [P in any]: any }
     >;
   };
 
   return {
-    theme,
+    theme: defaultTheme,
     styled,
     useTheme,
     extendTheme,

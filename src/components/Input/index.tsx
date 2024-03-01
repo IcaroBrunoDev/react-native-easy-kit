@@ -6,11 +6,11 @@ import React from 'react';
 import { useTheme } from '../../config';
 import type { InputProps } from './Models';
 
-const Input: FC<InputProps> = ({ leftIcon, rightIcon, styles, ...props }) => {
+const Input: FC<InputProps> = ({ leftIcon, rightIcon, style, ...props }) => {
   const { colors } = useTheme();
 
   return (
-    <Wrapper style={styles}>
+    <Wrapper style={style}>
       {leftIcon}
       <TextInput placeholderTextColor={colors.text} {...props} />
       {rightIcon}

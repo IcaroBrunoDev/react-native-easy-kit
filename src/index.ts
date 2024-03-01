@@ -8,4 +8,5 @@ import Accordion from './components/Accordion';
 import { theme, styled, useTheme, extendTheme, KitProvider } from './config';
 
 export { Fab, Text, Button, Accordion, Title, Anchor, Input };
+
 export { theme, styled, useTheme, extendTheme, KitProvider };

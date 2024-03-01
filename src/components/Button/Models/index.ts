@@ -1,4 +1,5 @@
-import type { StyleProp, TextStyle } from 'react-native';
+import type { PropsFunction } from '../../../models';
+import type { Styles } from '../../../models/styles';
 
 /**
  * @interface ButtonProps
@@ -18,9 +19,9 @@ export interface ButtonProps {
 
   /**
    * Apply/Overwrite the button styles
-   * @type {StyleProp<TextStyle>}
+   * @type {Styles}
    */
-  style?: StyleProp<TextStyle>;
+  style?: Styles;
 
   /**
    * Control Loading Render
@@ -55,5 +56,5 @@ export interface ButtonProps {
    *
    * @returns {Promise<any> | any} Could be anything, even void.
    */
-  onPress: (...args: any) => Promise<any> | any;
+  onPress: PropsFunction;
 }

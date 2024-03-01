@@ -1,5 +1,5 @@
-import type { ReactElement } from 'react';
-import type { StyleProp, ViewStyle } from 'react-native';
+import type { ReactNode } from 'react';
+import type { Styles } from '../../../models/styles';
 
 /**
  * @interface AccordionProps
@@ -9,15 +9,15 @@ export interface AccordionProps {
 
   color?: string;
 
-  icon?: ReactElement;
+  icon?: ReactNode;
 
   rounded?: boolean;
 
   labelColor?: string;
 
-  variant?: 'success' | 'danger' | 'warning' | string;
+  variant?: string;
 
-  style?: StyleProp<ViewStyle>;
+  style?: Styles;
 
-  children: ReactElement | ReactElement[];
+  children: ReactNode;
 }

@@ -7,7 +7,7 @@ type FlatTheme = {
 
 export const generateStyles = (
   inline: Styles | undefined,
-  styled: Styles | undefined,
+  styled: Styles | Styles[] | undefined,
   theme: Theme
 ): Styles => {
   let mergedStyles = {};

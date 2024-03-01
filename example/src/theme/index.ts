@@ -3,6 +3,7 @@ import { extendTheme } from 'react-native-easy-kit';
 export const theme = extendTheme({
   colors: {
     main: '#000',
+    newThemeColor: 'blue',
   },
   variants: {
     teste: {

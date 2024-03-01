@@ -1,6 +1,6 @@
 import type { FlexStyle, ImageStyle, TextStyle, ViewStyle } from 'react-native';
 
-type StylesToParserToken =
+type NumberKeys =
   | 'fontSize'
   | 'bottom'
   | 'end'
@@ -34,12 +34,15 @@ type StylesToParserToken =
   | 'top'
   | 'width';
 
-type MergedStyles = ViewStyle & FlexStyle & TextStyle & ImageStyle;
+type ReactNativeStyles = Partial<
+  Omit<ViewStyle & FlexStyle & TextStyle & ImageStyle, NumberKeys>
+> &
+  NumericStyles;
 
-type PreTokenStyles = Partial<Omit<MergedStyles, StylesToParserToken>>;
-
-type Styles = PreTokenStyles & {
-  [P in StylesToParserToken]?: string | number;
+type NumericStyles = {
+  [P in NumberKeys]?: string | number;
 };
+
+type Styles = ReactNativeStyles;
 
 export type { Styles };

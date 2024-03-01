@@ -1,3 +1,4 @@
+import type { PropsFunction } from '../../../models';
 import type { Styles } from '../../../models/styles';
 import type { fonts } from '../../../theme/fonts';
 
@@ -10,5 +11,5 @@ export type TypographyProps = {
 };
 
 export interface AnchorProps extends TypographyProps {
-  onPress: (...args: any) => Promise<any> | any;
+  onPress: PropsFunction;
 }

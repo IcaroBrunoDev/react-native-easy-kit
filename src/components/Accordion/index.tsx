@@ -82,7 +82,9 @@ const Accordion: FC<AccordionProps> = ({
       onPress={() => expandAccordion(!isExpanded)}
     >
       <AccordionRetracted>
-        <Text style={{ maxWidth: '90%', color: styles.color }}>{title}</Text>
+        <Text style={{ maxWidth: '90%', width: 'auto', color: styles.color }}>
+          {title}
+        </Text>
         {icon && (
           <AnimatedArrow
             style={{

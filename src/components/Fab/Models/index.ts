@@ -1,19 +1,20 @@
-import type { ReactElement } from 'react';
-import type { StyleProp, ViewStyle } from 'react-native';
+import type { ReactNode } from 'react';
+import type { Styles } from '../../../models/styles';
 import type variants from '../../../theme/variants';
+import type { PropsFunction } from '../../../models';
 
 type Positions = 'top' | 'bottom' | 'top-inverted' | 'bottom-inverted';
 
 export interface FabProps {
-  icon: ReactElement;
+  icon: ReactNode;
 
   color?: string;
 
   position?: Positions;
 
-  style?: StyleProp<ViewStyle>;
+  style?: Styles;
 
   variant?: keyof typeof variants;
 
-  onPress: (...args: any) => Promise<any> | any;
+  onPress: PropsFunction;
 }
