@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import type { Styles } from '../../models/styles';
+import type { KitTheme } from '..';
 
 type BaseVariants = 'success' | 'error' | 'warning';
 
@@ -17,7 +18,7 @@ type Theme = {
 };
 
 type Provider = {
-  theme: Theme;
+  theme: KitTheme & Theme;
   children?: ReactNode;
 };
 

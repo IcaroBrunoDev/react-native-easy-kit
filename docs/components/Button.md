@@ -30,7 +30,7 @@ import { Button } from 'react-native-easy-kit';
 ## Types
 
 ```ts
-interface ButtonProps {
+interface ButtonProps extends TouchableOpacityProps {
   title: string;
   color?: string;
   style?: Styles;

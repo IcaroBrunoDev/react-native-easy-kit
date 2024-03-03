@@ -6,7 +6,7 @@ import React, {
   useContext,
 } from 'react';
 
-import * as ReactNative from 'react-native';
+import * as Native from 'react-native';
 
 import { generateStyles, mergeThemes } from '../utils';
 
@@ -15,7 +15,15 @@ import type { Styles } from '../models/styles';
 import type { KitTheme } from '../theme';
 import type { Provider, Theme } from '../theme/Models';
 
-const createKitTheme = (defaultTheme: Theme) => {
+type Composition<T> = Omit<T, 'style'> & ElementStyles & { [P in any]: any };
+
+type StyledComponent<
+  T extends keyof Elements | React.NamedExoticComponent<any>
+> = T extends keyof Elements
+  ? React.NamedExoticComponent<Composition<Elements[T]>>
+  : T;
+
+const createKitTheme = (defaultTheme: KitTheme) => {
   const ThemeContext = createContext(defaultTheme);
 
   /**
@@ -44,7 +52,7 @@ const createKitTheme = (defaultTheme: Theme) => {
    * @param extension
    * @returns {Theme & T}
    */
-  const extendTheme = <T extends Theme>(extension: T): Theme & T =>
+  const extendTheme = <T extends Theme>(extension: T): KitTheme & T =>
     mergeThemes(defaultTheme, extension);
 
   /**
@@ -53,28 +61,28 @@ const createKitTheme = (defaultTheme: Theme) => {
    * @param styles
    * @returns
    */
-  const styled = <T extends keyof Elements>(
-    element: T,
+  const styled = <T extends keyof Elements | React.NamedExoticComponent<any>>(
+    Element: T,
     styles?: Styles | Styles[]
   ) => {
-    if (typeof element !== 'string' || !ReactNative[element])
-      throw new Error('Element type is not supported');
+    /**
+     * TODO
+     * props type definition
+     */
 
     const Component = forwardRef((props: any, ref) => {
       const theme = useTheme();
 
       const style = generateStyles(props.style, styles, theme);
 
-      return createElement(ReactNative[element] as any, {
-        ...props,
-        style,
-        ref,
-      });
+      const rest = { ...props, style, ref };
+
+      if (typeof Element === 'object') return <Element {...rest} />;
+
+      return createElement(Native[Element as string], rest);
     });
 
-    return memo(Component) as React.ComponentType<
-      Omit<Elements[T], 'style'> & ElementStyles & { [P in any]: any }
-    >;
+    return memo(Component) as unknown as StyledComponent<T>;
   };
 
   return {

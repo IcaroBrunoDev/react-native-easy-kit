@@ -31,12 +31,12 @@ type Positions = 'top' | 'bottom' | 'top-inverted' | 'bottom-inverted';
 ```
 
 ```ts
-type FabProps = {
+interface FabProps extends TouchableOpacityProps {
   icon: ReactNode;
   color?: string;
   style?: Styles;
-  variant?: string;
   position?: Positions;
+  variant?: string;
   onPress: PropsFunction;
-};
+}
 ```

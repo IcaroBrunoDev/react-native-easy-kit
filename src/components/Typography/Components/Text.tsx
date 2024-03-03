@@ -3,7 +3,7 @@ import React, { useMemo, type FC } from 'react';
 import { styled, useTheme } from '../../../config';
 import type { TypographyProps } from '../Models';
 
-const Text: FC<TypographyProps> = ({ size, style, children }) => {
+const Text: FC<TypographyProps> = ({ size, style, children, ...props }) => {
   const { colors } = useTheme();
 
   const fontSize = useMemo(() => {
@@ -11,7 +11,9 @@ const Text: FC<TypographyProps> = ({ size, style, children }) => {
   }, [size]);
 
   return (
-    <Base style={[{ fontSize, color: colors.text }, style]}>{children}</Base>
+    <Base {...props} style={[{ fontSize, color: colors.text }, style]}>
+      {children}
+    </Base>
   );
 };
 

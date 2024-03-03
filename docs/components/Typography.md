@@ -46,15 +46,16 @@ import { Text, Title, Anchor } from 'react-native-easy-kit';
 ## Types
 
 ```ts
-type TypographyProps = {
-  size?: string | number;
+interface TypographyProps extends TextProps {
+  size?: keyof typeof fonts | number;
   style?: Styles;
-  children: string;
-};
+  children: ReactNode;
+}
 ```
 
 ```ts
 interface AnchorProps extends TypographyProps {
+  underline?: boolean;
   onPress: PropsFunction;
 }
 ```

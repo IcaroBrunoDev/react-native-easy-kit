@@ -1,4 +1,5 @@
 import type { Styles } from '../models/styles';
+import type { KitTheme } from '../theme';
 import type { Theme, Variants } from '../theme/Models';
 
 type FlatTheme = {
@@ -64,7 +65,7 @@ export const mergeThemes = <T extends Theme>(theme: Theme, extension: T) => {
     }
   }
 
-  return theme as Theme & T;
+  return theme as KitTheme & T;
 };
 
 export const applyVariant = (

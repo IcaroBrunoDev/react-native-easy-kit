@@ -18,12 +18,15 @@ const Button: FC<ButtonProps> = ({
   onPress,
   outlined,
   variant,
+  ...props
 }) => {
   const { apply } = useVariant();
   const { colors } = useTheme();
 
   const handlePress = (): void => {
     if (loading) return;
+
+    console.log(typeof onPress);
 
     onPress();
   };
@@ -43,6 +46,7 @@ const Button: FC<ButtonProps> = ({
 
   return (
     <TouchableOpacity
+      {...props}
       variant={variant}
       onPress={handlePress}
       style={[styles, style]}
