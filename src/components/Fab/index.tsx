@@ -16,6 +16,7 @@ const Fab: FC<FabProps> = ({
   variant,
   position,
   onPress,
+  ...props
 }) => {
   const { apply } = useVariant();
   const { colors } = useTheme();
@@ -32,7 +33,7 @@ const Fab: FC<FabProps> = ({
   }, [colors, color, variant, position, apply]);
 
   return (
-    <Wrapper onPress={onPress} style={[styles, style]}>
+    <Wrapper {...props} onPress={onPress} style={[styles, style]}>
       {icon}
     </Wrapper>
   );

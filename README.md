@@ -16,8 +16,6 @@ You can quickly customize the ready-made components or create your own component
 
 ## Components
 
-** More components comming soon... **
-
 You can access the documentation for each of them below:
 
 [`<Fab />`](docs/components/Fab.md)
@@ -30,11 +28,15 @@ You can access the documentation for each of them below:
 
 [`<Typography />`](docs/components/Typography.md)
 
+** More components are coming soon... **
+
 ## Functionalities
 
 You can access the documentation for each of them below:
 
 [`theme`](docs/functions/Theme.md)
+
+[`styled`](docs/functions/Styled.md)
 
 [`useTheme()`](docs/functions/UseTheme.md)
 
@@ -58,16 +60,12 @@ yarn add react-native-easy-kit
 
 ## Setup
 
-The React Native Easy Kit is almost zero-configuration, everything that you need to start is already configured, but if you want to customize the default theme and add your own you need to follow the steps above or take a look at {doc} to understand more about custom theme creation and how to work with dark theme.
+The React Native Easy Kit is almost zero-configuration, everything that you need to start is already configured, but if you want to customize the default theme and add your own you need to follow the steps above or take a look at [`theme`](docs/functions/Theme.md) to understand more about custom theme creation and how to work with dark theme.
 
 First, create your new theme using the `extendTheme()` function. It will return to you a custom theme object, which is a extension of the default theme. You can understand more how it works here.
 
 ```tsx
-...
-
 import { KitProvider, extendTheme } from 'react-native-easy-kit';
-
-...
 
 const theme = extendTheme({
   colors: {
@@ -99,7 +97,7 @@ This library wasn’t made by a team (unless you consider one developer to be a 
 
 Contributions that want to improve this library are welcome, you can DM me on my LinkedIn.
 
-You can learn about the TODO's here
+You can learn about the TODO's [`here`](docs/TODO.md)
 
 ## License
 

@@ -3,14 +3,18 @@ import React, { type FC } from 'react';
 import { styled, useTheme } from '../../../config';
 import type { TypographyProps } from '../Models';
 
-const Title: FC<TypographyProps> = ({ style, children }) => {
+const Title: FC<TypographyProps> = ({ style, children, ...props }) => {
   const { colors } = useTheme();
 
-  return <Base style={[{ color: colors.text }, style]}>{children}</Base>;
+  return (
+    <Base {...props} style={[{ color: colors.text }, style]}>
+      {children}
+    </Base>
+  );
 };
 
 const Base = styled('Text', {
-  fontSize: '$sm',
+  fontSize: '$md',
   fontWeight: '800',
 });
 
