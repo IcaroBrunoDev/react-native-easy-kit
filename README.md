@@ -38,9 +38,9 @@ You can access the documentation for each of them below:
 
 [`styled`](docs/functions/Styled.md)
 
-[`useTheme()`](docs/functions/UseTheme.md)
+[`useTheme`](docs/functions/UseTheme.md)
 
-[`extendTheme()`](docs/functions/ExtendTheme.md)
+[`extendTheme`](docs/functions/ExtendTheme.md)
 
 [`<KitProvider />`](docs/functions/KitProvider.md)
 
