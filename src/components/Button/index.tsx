@@ -26,30 +26,28 @@ const Button: FC<ButtonProps> = ({
   const handlePress = (): void => {
     if (loading) return;
 
-    console.log(typeof onPress);
-
     onPress();
   };
 
   const styles = useMemo(() => {
     const { primary, white } = colors;
 
-    const style = {
+    const bruteStyles = {
       color: outlined ? color : white,
       borderWidth: outlined ? 1 : 0,
       borderRadius: rounded ? 100 : 0,
       backgroundColor: outlined ? 'transparent' : color ?? primary,
     };
 
-    return apply(style, variant);
-  }, [outlined, rounded, color, variant, apply, colors]);
+    return { ...style, ...apply(bruteStyles, variant) };
+  }, [outlined, rounded, color, variant, apply, colors, style]);
 
   return (
     <TouchableOpacity
-      {...props}
       variant={variant}
       onPress={handlePress}
-      style={[styles, style]}
+      style={styles}
+      {...props}
     >
       {loading ? (
         <ActivityIndicator

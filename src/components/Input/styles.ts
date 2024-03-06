@@ -1,7 +1,13 @@
 import { styled } from '../../config';
 
-export const Wrapper = styled('View', {
-  maxHeight: 50,
+export const ComponentWrapper = styled('View', {
+  flexDirection: 'column',
+  alignItems: 'flex-start',
+  justifyContent: 'flex-start',
+});
+
+export const TextInputWrapper = styled('View', {
+  height: 50,
   display: 'flex',
   alignItems: 'center',
   flexDirection: 'row',

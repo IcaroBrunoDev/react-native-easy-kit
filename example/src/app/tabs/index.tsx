@@ -1,7 +1,15 @@
-import { MaterialIcons } from '@expo/vector-icons';
-import React from 'react';
+import React, { useState } from 'react';
 
-import { Fab, Title, styled } from 'react-native-easy-kit';
+import {
+  ActionSheet,
+  Button,
+  Text,
+  styled,
+  useTheme,
+} from 'react-native-easy-kit';
+
+import { MaterialIcons } from '@expo/vector-icons';
+import type { Theme } from '../../theme';
 
 const View = styled('View', {
   flex: 1,
@@ -9,43 +17,36 @@ const View = styled('View', {
   justifyContent: 'center',
 });
 
-const CustomInput = styled('TextInput', {
-  width: 100,
-  height: 100,
-  backgroundColor: '$secondary',
-});
-
-const CustomText = styled('Text', {
-  fontSize: 25,
-  color: '$primary',
-});
-
-const ExtendedInput = styled(CustomInput);
-
-const ExtendedComponent = styled(CustomText);
-
-const ExtendedFab = styled(Fab, {
-  width: 100,
-  height: 100,
-  backgroundColor: '$danger',
-});
-
 const Home = () => {
+  const { colors } = useTheme<Theme>();
+
+  const [actionSheet, setActionSheed] = useState<boolean>(false);
+
   return (
     <View>
-      <Title>Hello There, Welcome to the React Native Easy Kit</Title>
-      <ExtendedComponent>
-        Hi everyone! Welcome to the Easy Kit library. This application has the
-        purpose to guide you through a easy kit components and functionality, be
-        free to use it as your playground and explore the limits and power of
-        the built-in components, you are open to navigate between the
-        pre-builted screens or create new screens
-      </ExtendedComponent>
-      <ExtendedInput placeholder="Teste de component extendido"></ExtendedInput>
+      <ActionSheet
+        title="ActionSheet Test"
+        visible={actionSheet}
+        onClose={() => setActionSheed(false)}
+      >
+        {Array(4)
+          .fill(0)
+          .map((_, index) => (
+            <ActionSheet.Item key={index}>
+              <Text>Item 0{index + 1}</Text>
+              <MaterialIcons
+                name="workspaces-outline"
+                size={15}
+                color={colors.text}
+              />
+            </ActionSheet.Item>
+          ))}
+      </ActionSheet>
 
-      <ExtendedFab
-        icon={<MaterialIcons name="work" size={25} color="#fff" />}
-        onPress={() => console.log('Fab Pressed')}
+      <Button
+        title="Handle ActionSheet"
+        rounded
+        onPress={() => setActionSheed(true)}
       />
     </View>
   );

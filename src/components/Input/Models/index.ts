@@ -7,4 +7,5 @@ export interface InputProps extends Omit<TextInputProps, 'style'> {
   isError?: boolean;
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
+  children?: ReactNode;
 }

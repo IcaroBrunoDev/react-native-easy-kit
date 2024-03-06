@@ -19,7 +19,7 @@ const Text: FC<TypographyProps> = ({ size, style, children, ...props }) => {
 
 const Base = styled('Text', {
   fontSize: '$sm',
-  fontWeight: '600',
+  fontWeight: 'normal',
 });
 
 export default Text;

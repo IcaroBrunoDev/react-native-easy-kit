@@ -31,7 +31,7 @@ const Anchor: FC<AnchorProps> = ({
 const TouchableOpacity = styled('TouchableOpacity');
 
 const Text = styled('Text', {
-  fontSize: '$xs',
+  fontSize: '$sm',
   textDecorationStyle: 'solid',
   textDecorationLine: 'underline',
 });

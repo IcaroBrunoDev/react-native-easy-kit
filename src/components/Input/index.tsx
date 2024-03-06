@@ -1,20 +1,43 @@
-import { memo, type FC } from 'react';
+import { memo, useMemo, type FC } from 'react';
 
-import { TextInput, Wrapper } from './styles';
+import { ComponentWrapper, TextInput, TextInputWrapper } from './styles';
 
 import React from 'react';
 import { useTheme } from '../../config';
 import type { InputProps } from './Models';
 
-const Input: FC<InputProps> = ({ leftIcon, rightIcon, style, ...props }) => {
+const Input: FC<InputProps> = ({
+  leftIcon,
+  rightIcon,
+  isError,
+  style,
+  children,
+  ...props
+}) => {
   const { colors } = useTheme();
 
+  const styles = useMemo(() => {
+    if (!isError) return style;
+
+    return {
+      ...style,
+      borderWidth: 1.5,
+      borderColor: '$danger',
+    };
+  }, [style, isError]);
+
   return (
-    <Wrapper style={style}>
-      {leftIcon}
-      <TextInput placeholderTextColor={colors.text} {...props} />
-      {rightIcon}
-    </Wrapper>
+    <ComponentWrapper>
+      <TextInputWrapper style={styles}>
+        {leftIcon}
+        <TextInput
+          placeholderTextColor={isError ? colors.danger : colors.text}
+          {...props}
+        />
+        {rightIcon}
+      </TextInputWrapper>
+      {children}
+    </ComponentWrapper>
   );
 };
 
