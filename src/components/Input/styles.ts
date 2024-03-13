@@ -1,6 +1,6 @@
 import { styled } from '../../config';
 
-export const ComponentWrapper = styled('View', {
+export const ComponentWrapper = styled('Pressable', {
   flexDirection: 'column',
   alignItems: 'flex-start',
   justifyContent: 'flex-start',

@@ -23,8 +23,10 @@ const ActionSheet: FC<ActionSheetProps> = ({
       <Wrapper>
         <SheetSkeleton>
           <SheetHeader>
-            {title && <Title>{title}</Title>}
-            <CloseIcon onPress={onClose} />
+            <TitleWrapper>{title && <Title>{title}</Title>}</TitleWrapper>
+            <CloseIconWrapper onPress={onClose}>
+              <CloseIcon onPress={onClose} />
+            </CloseIconWrapper>
           </SheetHeader>
           {children}
         </SheetSkeleton>
@@ -39,8 +41,10 @@ export const Wrapper = styled('View', {
 });
 
 export const SheetSkeleton = styled('View', {
+  elevation: 2,
+  maxHeight: 300,
   paddingVertical: '$6',
-  paddingHorizontal: '$3',
+  paddingHorizontal: '$4',
   borderTopLeftRadius: 12,
   borderTopRightRadius: 12,
   backgroundColor: '$white',
@@ -51,6 +55,17 @@ export const SheetHeader = styled('View', {
   justifyContent: 'space-between',
   alignItems: 'center',
   marginBottom: '$3',
+});
+
+const CloseIconWrapper = styled('Pressable', {
+  width: 50,
+  height: 30,
+  justifyContent: 'center',
+  alignItems: 'flex-end',
+});
+
+export const TitleWrapper = styled('View', {
+  flexGrow: 1,
 });
 
 export default ActionSheet;

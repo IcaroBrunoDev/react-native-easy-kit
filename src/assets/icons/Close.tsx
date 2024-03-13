@@ -1,12 +1,12 @@
 import React, { type FC } from 'react';
-import type { TouchableOpacityProps } from 'react-native';
+import type { PressableProps } from 'react-native';
 import { View } from 'react-native';
 import { styled } from '../../config';
 
-type IconProps = {
+export type IconProps = {
   size?: number;
   color?: string;
-} & Omit<TouchableOpacityProps, 'style'>;
+} & Omit<PressableProps, 'style'>;
 
 const CloseIcon: FC<IconProps> = ({ size = 15, color = '$text', ...props }) => {
   return (
@@ -27,7 +27,7 @@ const CloseIcon: FC<IconProps> = ({ size = 15, color = '$text', ...props }) => {
   );
 };
 
-const Container = styled('TouchableOpacity', {
+const Container = styled('Pressable', {
   alignItems: 'center',
   justifyContent: 'center',
 });

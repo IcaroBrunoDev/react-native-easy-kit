@@ -168,5 +168,9 @@
         }
       ]
     ]
+  },
+  "dependencies": {
+    "react-native-gesture-handler": "^2.15.0",
+    "react-native-reanimated": "^3.8.0"
   }
 }
