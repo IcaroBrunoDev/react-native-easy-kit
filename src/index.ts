@@ -8,6 +8,8 @@ import Accordion from './components/Accordion';
 import { ActionSheet } from './components/ActionSheet';
 import SelectPicker from './components/SelectPicker';
 
+import type { PickerOption } from './components/SelectPicker/Models';
+
 import { theme, styled, useTheme, extendTheme, KitProvider } from './config';
 
 export {
@@ -23,3 +25,5 @@ export {
 };
 
 export { theme, styled, useTheme, extendTheme, KitProvider };
+
+export type { PickerOption };

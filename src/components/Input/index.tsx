@@ -27,7 +27,7 @@ const Input: FC<InputProps> = ({
   }, [style, isError]);
 
   return (
-    <ComponentWrapper {...props}>
+    <ComponentWrapper {...(props as any)}>
       <TextInputWrapper style={styles}>
         {leftIcon}
         <TextInput
