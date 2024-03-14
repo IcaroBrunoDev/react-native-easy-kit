@@ -42,7 +42,7 @@ export const Wrapper = styled('View', {
 
 export const SheetSkeleton = styled('View', {
   elevation: 4,
-  maxHeight: 300,
+  maxHeight: 450,
   paddingVertical: '$6',
   paddingHorizontal: '$4',
   borderTopLeftRadius: 12,
