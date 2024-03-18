@@ -18,6 +18,7 @@ const ActionSheet: FC<ActionSheetProps> = ({
       animationType="slide"
       visible={visible}
       transparent={true}
+      onDismiss={onClose}
       onRequestClose={onClose}
     >
       <Wrapper>
@@ -42,7 +43,7 @@ export const Wrapper = styled('View', {
 
 export const SheetSkeleton = styled('View', {
   elevation: 4,
-  maxHeight: 450,
+  minHeight: 450,
   paddingVertical: '$6',
   paddingHorizontal: '$4',
   borderTopLeftRadius: 12,
