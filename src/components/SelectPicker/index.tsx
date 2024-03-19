@@ -43,6 +43,7 @@ const SelectPicker: FC<PickerProps> = ({
         <FlatList
           data={options}
           showsVerticalScrollIndicator
+          contentContainerStyle={{ maxHeight: 450 }}
           keyExtractor={(item, index) => `${item.text}-${index}`}
           renderItem={({ item }) => (
             <ActionSheet.Item onPress={() => handleItemSelection(item)}>
