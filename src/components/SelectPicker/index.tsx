@@ -6,6 +6,7 @@ import { ActionSheet } from '../ActionSheet';
 import Input from '../Input';
 import { Text } from '../Typography';
 import type { PickerProps } from './Models';
+import { styled } from '../../config';
 
 const SelectPicker: FC<PickerProps> = ({
   title,
@@ -40,20 +41,25 @@ const SelectPicker: FC<PickerProps> = ({
         title={title || 'Escolha um valor'}
         onClose={() => setIsVisible(false)}
       >
-        <FlatList
-          data={options}
-          showsVerticalScrollIndicator
-          contentContainerStyle={{ maxHeight: 450 }}
-          keyExtractor={(item, index) => `${item.text}-${index}`}
-          renderItem={({ item }) => (
-            <ActionSheet.Item onPress={() => handleItemSelection(item)}>
-              <Text>{item.text}</Text>
-            </ActionSheet.Item>
-          )}
-        />
+        <ListWrapper>
+          <FlatList
+            data={options}
+            showsVerticalScrollIndicator
+            keyExtractor={(item, index) => `${item.text}-${index}`}
+            renderItem={({ item }) => (
+              <ActionSheet.Item onPress={() => handleItemSelection(item)}>
+                <Text>{item.text}</Text>
+              </ActionSheet.Item>
+            )}
+          />
+        </ListWrapper>
       </ActionSheet>
     </>
   );
 };
+
+const ListWrapper = styled('View', {
+  maxHeight: 350,
+});
 
 export default SelectPicker;
